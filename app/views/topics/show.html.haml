@@ -1,2 +1,13 @@
 %h2= @topic.title
 %div= @topic.author.name
+%div= @topic.content
+
+%div= pluralize(@replies.count, 'réponse')
+%div= link_to('Répondre', new_topic_reply_path(@topic))
+
+- @replies.each do |reply|
+  %div
+    %div= reply.author.name
+    %div= reply.content
+
+= paginate(@replies)

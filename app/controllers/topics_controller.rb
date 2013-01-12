@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.page(params[:page])
+    @topics = Topic.page(params[:page]).order('last_activity_at DESC')
   end
 
 
@@ -10,13 +10,14 @@ class TopicsController < ApplicationController
 
 
   def create
-    topic = current_user.topics.create(topic_params)
+    topic = current_user.topics.create!(topic_params.merge(last_activity_at: Time.current))
     redirect_to(topic)
   end
 
 
   def show
-    @topic = Topic.find(params[:id])
+    @topic   = Topic.find(params[:id])
+    @replies = @topic.replies.page(params[:page]).order('created_at ASC')
   end
 
 

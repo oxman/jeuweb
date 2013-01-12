@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112100949) do
+ActiveRecord::Schema.define(:version => 20130112212912) do
 
   create_table "replies", :force => true do |t|
     t.text     "content"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130112100949) do
     t.integer  "last_reply_author_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.datetime "last_activity_at"
   end
 
   add_index "topics", ["author_id"], :name => "index_topics_on_author_id"
