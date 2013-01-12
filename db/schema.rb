@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111211743) do
+ActiveRecord::Schema.define(:version => 20130112100949) do
+
+  create_table "replies", :force => true do |t|
+    t.text     "content"
+    t.integer  "author_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "replies", ["author_id"], :name => "index_replies_on_author_id"
+  add_index "replies", ["topic_id"], :name => "index_replies_on_topic_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "author_id"
+    t.integer  "last_reply_id"
+    t.integer  "last_reply_author_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "topics", ["author_id"], :name => "index_topics_on_author_id"
+  add_index "topics", ["last_reply_author_id"], :name => "index_topics_on_last_reply_author_id"
+  add_index "topics", ["last_reply_id"], :name => "index_topics_on_last_reply_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
