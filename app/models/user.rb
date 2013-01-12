@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password_digest
+  include ActiveModel::ForbiddenAttributesProtection
+  has_secure_password
 end

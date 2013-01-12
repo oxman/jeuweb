@@ -8,4 +8,12 @@
     = csrf_meta_tags
 
   %body
+    %div
+      - if current_user
+        = current_user.name
+        = link_to('Déconnexion', sign_out_path, method: :delete)
+      - else
+        Invité
+        = link_to('Connexion', sign_in_path)
+
     = yield
