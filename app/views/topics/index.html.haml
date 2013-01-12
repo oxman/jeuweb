@@ -1,6 +1,6 @@
 %ul
   - @topics.each do |topic|
-    %li= topic.title
+    %li= link_to topic.title, topic
 
 %div
   = link_to 'Créer une discussion', new_topic_path

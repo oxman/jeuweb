@@ -9,6 +9,7 @@
 
   %body
     %div
+      = link_to 'JeuWeb', root_path
       - if current_user
         = current_user.name
         = link_to('Déconnexion', sign_out_path, method: :delete)
