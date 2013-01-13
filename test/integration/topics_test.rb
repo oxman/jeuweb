@@ -19,4 +19,21 @@ class TopicsTest < ActionDispatch::IntegrationTest
     assert has_content?('Some title')
     assert has_content?('Some content')
   end
+
+
+  def test_guest_user_cant_reply_to_topic
+    topic = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    visit topic_path(topic)
+    assert has_no_selector?('.create_reply'), 'Guest user should not see any link to reply to the topic'
+    assert_raise(CanCan::AccessDenied) { visit(new_topic_reply_path(topic)) }
+  end
+
+
+  def test_signed_in_user_can_reply_to_topic
+    user = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic, author: user)
+    sign_in_as(user)
+    visit topic_path(topic)
+    assert has_selector?('.create_reply'), 'Signed in user should see a link to reply to the topic'
+  end
 end

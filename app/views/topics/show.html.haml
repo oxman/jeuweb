@@ -3,7 +3,9 @@
 %div= @topic.content
 
 %div= pluralize(@replies.count, 'réponse')
-%div= link_to('Répondre', new_topic_reply_path(@topic))
+
+- if can?(:create, Reply)
+  %div= link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
 
 - @replies.each do |reply|
   %div
