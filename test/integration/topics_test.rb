@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'integration_test_helper'
 
 class TopicsTest < ActionDispatch::IntegrationTest
@@ -35,5 +36,10 @@ class TopicsTest < ActionDispatch::IntegrationTest
     sign_in_as(user)
     visit topic_path(topic)
     assert has_selector?('.create_reply'), 'Signed in user should see a link to reply to the topic'
+    find('.create_reply').click
+    fill_in 'reply[content]', with: 'Some content for reply'
+    find('[type=submit]').click
+    assert has_content?('Some content for reply')
+    assert has_content?('1 réponse')
   end
 end
