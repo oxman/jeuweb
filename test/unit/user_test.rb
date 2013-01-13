@@ -13,6 +13,20 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
+  def test_user_can_edit_its_topics
+    topic   = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    ability = Ability.new(topic.author)
+    assert ability.can?(:update, topic), 'User should be able to edit its topic'
+  end
+
+
+  def test_user_cant_edit_other_users_topics
+    topic   = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    ability = Ability.new(FactoryGirl.create(:user))
+    assert !ability.can?(:update, topic), "User should not be able to edit other user's topic"
+  end
+
+
   def test_user_can_edit_its_replies
     reply   = FactoryGirl.create(:reply, author: FactoryGirl.create(:user))
     ability = Ability.new(reply.author)
