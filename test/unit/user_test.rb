@@ -14,35 +14,35 @@ class UserTest < ActiveSupport::TestCase
 
 
   def test_user_can_edit_his_topics
-    topic   = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    topic   = FactoryGirl.create(:topic)
     ability = Ability.new(topic.author)
     assert ability.can?(:update, topic), 'User should be able to edit his topic'
   end
 
 
   def test_user_cant_edit_other_users_topics
-    topic   = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    topic   = FactoryGirl.create(:topic)
     ability = Ability.new(FactoryGirl.create(:user))
     assert !ability.can?(:update, topic), "User should not be able to edit other user's topic"
   end
 
 
   def test_user_can_edit_his_replies
-    reply   = FactoryGirl.create(:reply, author: FactoryGirl.create(:user))
+    reply   = FactoryGirl.create(:reply)
     ability = Ability.new(reply.author)
     assert ability.can?(:update, reply), 'User should be able to edit his reply'
   end
 
 
   def test_user_cant_edit_other_users_replies
-    reply   = FactoryGirl.create(:reply, author: FactoryGirl.create(:user))
+    reply   = FactoryGirl.create(:reply)
     ability = Ability.new(FactoryGirl.create(:user))
     assert !ability.can?(:update, reply), "User should not be able to edit other user's reply"
   end
 
 
   def test_nil_user_cant_edit_other_users_replies
-    reply   = FactoryGirl.create(:reply, author: FactoryGirl.create(:user))
+    reply   = FactoryGirl.create(:reply)
     ability = Ability.new(nil)
     assert !ability.can?(:update, reply), "Guest user should not be able to edit any reply"
   end

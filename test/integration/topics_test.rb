@@ -23,7 +23,7 @@ class TopicsTest < ActionDispatch::IntegrationTest
 
 
   def test_guest_user_cant_reply_to_topic
-    topic = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    topic = FactoryGirl.create(:topic)
     visit topic_path(topic)
     assert has_no_selector?('.create_reply'), 'Guest user should not see any link to reply to the topic'
     assert_raise(CanCan::AccessDenied) { visit(new_topic_reply_path(topic)) }
@@ -47,7 +47,7 @@ class TopicsTest < ActionDispatch::IntegrationTest
   def test_user_cant_edit_other_users_replies
     user  = FactoryGirl.create(:user)
     topic = FactoryGirl.create(:topic, author: user)
-    FactoryGirl.create(:reply, author: FactoryGirl.create(:user), topic: topic)
+    FactoryGirl.create(:reply, topic: topic)
     sign_in_as(user)
     visit topic_path(topic)
     assert has_no_selector?('.edit_reply'), "User should not see the edit link of another user's reply"
@@ -85,7 +85,7 @@ class TopicsTest < ActionDispatch::IntegrationTest
 
   def test_user_cant_edit_other_users_topics
     user  = FactoryGirl.create(:user)
-    topic = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    topic = FactoryGirl.create(:topic)
     sign_in_as(user)
     visit topic_path(topic)
     assert has_no_selector?('.edit_topic'), "User should not see the edit link of other user's topic"
