@@ -19,6 +19,22 @@ class RepliesController < ApplicationController
   end
 
 
+  def edit
+    @topic = Topic.find(params[:topic_id])
+    @reply = @topic.replies.find(params[:id])
+    authorize! :update, @reply
+  end
+
+
+  def update
+    topic = Topic.find(params[:topic_id])
+    reply = topic.replies.find(params[:id])
+    authorize! :update, reply
+    reply.update_attributes!(reply_params)
+    redirect_to(topic)
+  end
+
+
   private
 
   def reply_params

@@ -61,5 +61,9 @@ class TopicsTest < ActionDispatch::IntegrationTest
     sign_in_as(user)
     visit topic_path(topic)
     assert has_selector?('.edit_reply'), 'User should see the edit link of his replies'
+    find('.edit_reply').click
+    fill_in 'reply[content]', with: 'New reply content'
+    find('[type=submit]').click
+    assert has_content?('New reply content')
   end
 end

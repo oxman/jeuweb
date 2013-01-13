@@ -1,0 +1,12 @@
+%h2
+  Éditer votre réponse à
+  %q= @topic.title
+
+= form_for [ @topic, @reply ] do |f|
+  %div
+    = f.label :content
+    %br
+    = f.text_area :content
+
+  %div
+    = f.submit
