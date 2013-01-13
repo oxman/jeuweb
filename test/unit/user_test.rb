@@ -13,10 +13,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
-  def test_user_can_edit_its_topics
+  def test_user_can_edit_his_topics
     topic   = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
     ability = Ability.new(topic.author)
-    assert ability.can?(:update, topic), 'User should be able to edit its topic'
+    assert ability.can?(:update, topic), 'User should be able to edit his topic'
   end
 
 
@@ -27,10 +27,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
-  def test_user_can_edit_its_replies
+  def test_user_can_edit_his_replies
     reply   = FactoryGirl.create(:reply, author: FactoryGirl.create(:user))
     ability = Ability.new(reply.author)
-    assert ability.can?(:update, reply), 'User should be able to edit its reply'
+    assert ability.can?(:update, reply), 'User should be able to edit his reply'
   end
 
 
