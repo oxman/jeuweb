@@ -42,4 +42,24 @@ class TopicsTest < ActionDispatch::IntegrationTest
     assert has_content?('Some content for reply')
     assert has_content?('1 réponse')
   end
+
+
+  def test_user_cant_edit_other_users_replies
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic, author: user)
+    FactoryGirl.create(:reply, author: FactoryGirl.create(:user), topic: topic)
+    sign_in_as(user)
+    visit topic_path(topic)
+    assert has_no_selector?('.edit_reply'), "User should not see the edit link of another user's reply"
+  end
+
+
+  def test_user_can_edit_its_own_replies
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic, author: user)
+    FactoryGirl.create(:reply, author: user, topic: topic)
+    sign_in_as(user)
+    visit topic_path(topic)
+    assert has_selector?('.edit_reply'), 'User should see the edit link of his replies'
+  end
 end
