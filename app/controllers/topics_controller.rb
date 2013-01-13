@@ -23,6 +23,20 @@ class TopicsController < ApplicationController
   end
 
 
+  def edit
+    @topic = Topic.find(params[:id])
+    authorize! :update, @topic
+  end
+
+
+  def update
+    topic = Topic.find(params[:id])
+    authorize! :update, topic
+    topic.update_attributes!(topic_params)
+    redirect_to(topic)
+  end
+
+
   private
 
   def topic_params

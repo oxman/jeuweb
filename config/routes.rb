@@ -5,9 +5,11 @@ Jeuweb::Application.routes.draw do
   post   '/sign_in',  to: 'sessions#create'
   delete '/sign_out', to: 'sessions#destroy'
 
-  get  '/topics/new', to: 'topics#new',    as: 'new_topic'
-  get  '/topics/:id', to: 'topics#show',   as: 'topic'
-  post '/topics',     to: 'topics#create', as: 'topics'
+  get  '/topics/new',      to: 'topics#new',    as: 'new_topic'
+  get  '/topics/:id',      to: 'topics#show',   as: 'topic'
+  get  '/topics/:id/edit', to: 'topics#edit',   as: 'edit_topic'
+  put  '/topics/:id',      to: 'topics#update', as: 'topic'
+  post '/topics',          to: 'topics#create', as: 'topics'
 
   get  '/topics/:topic_id/replies/new',      to: 'replies#new',    as: 'new_topic_reply'
   get  '/topics/:topic_id/replies/:id/edit', to: 'replies#edit',   as: 'edit_topic_reply'

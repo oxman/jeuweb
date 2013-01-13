@@ -31,7 +31,7 @@ class TopicsTest < ActionDispatch::IntegrationTest
 
 
   def test_signed_in_user_can_reply_to_topic
-    user = FactoryGirl.create(:user)
+    user  = FactoryGirl.create(:user)
     topic = FactoryGirl.create(:topic, author: user)
     sign_in_as(user)
     visit topic_path(topic)
@@ -65,5 +65,29 @@ class TopicsTest < ActionDispatch::IntegrationTest
     fill_in 'reply[content]', with: 'New reply content'
     find('[type=submit]').click
     assert has_content?('New reply content')
+  end
+
+
+  def test_user_can_edit_his_topics
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic, author: user)
+    sign_in_as(user)
+    visit topic_path(topic)
+    assert has_selector?('.edit_topic'), 'User should see the edit link of his topic'
+    find('.edit_topic').click
+    fill_in 'topic[title]', with: 'New topic title'
+    fill_in 'topic[content]', with: 'New topic content'
+    find('[type=submit]').click
+    assert has_content?('New topic title')
+    assert has_content?('New topic content')
+  end
+
+
+  def test_user_cant_edit_other_users_topics
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic, author: FactoryGirl.create(:user))
+    sign_in_as(user)
+    visit topic_path(topic)
+    assert has_no_selector?('.edit_topic'), "User should not see the edit link of other user's topic"
   end
 end

@@ -2,6 +2,10 @@
 %div= @topic.author.name
 %div= @topic.content
 
+
+- if can?(:update, @topic)
+  %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
+
 %div= pluralize(@replies.count, 'réponse')
 
 - if can?(:create, Reply)
