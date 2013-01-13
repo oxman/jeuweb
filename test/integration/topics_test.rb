@@ -103,4 +103,18 @@ class TopicsTest < ActionDispatch::IntegrationTest
     assert find('.page.current').has_content?(2), 'User should be redirected to page 2'
     assert has_content?('Some content for reply')
   end
+
+
+  def test_redirect_to_proper_page_after_edit
+    Reply.paginates_per(1)
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic, replies: FactoryGirl.create_list(:reply, 3, author: user))
+    sign_in_as(user)
+    visit topic_path(topic, page: 2)
+    find('.edit_reply').click
+    fill_in 'reply[content]', with: 'New content for reply'
+    find('[type=submit]').click
+    assert find('.page.current').has_content?(2), 'User should be redirected to page 2'
+    assert has_content?('New content for reply')
+  end
 end

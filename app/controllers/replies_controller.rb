@@ -32,7 +32,8 @@ class RepliesController < ApplicationController
     reply = topic.replies.find(params[:id])
     authorize! :update, reply
     reply.update_attributes!(reply_params)
-    redirect_to(topic)
+    page = (topic.replies.where('created_at <= ?', reply.created_at).order('created_at ASC').count.to_f / Reply.default_per_page).ceil
+    redirect_to(topic_path(topic, page: page))
   end
 
 
