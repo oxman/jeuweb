@@ -15,7 +15,8 @@ class RepliesController < ApplicationController
       topic.update_attributes!(last_reply: reply, last_reply_author: current_user, last_activity_at: Time.current)
     end
 
-    redirect_to(topic)
+    replies = topic.replies.page(1).order('created_at ASC')
+    redirect_to(topic_path(topic, page: replies.num_pages))
   end
 
 

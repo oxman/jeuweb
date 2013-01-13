@@ -90,4 +90,17 @@ class TopicsTest < ActionDispatch::IntegrationTest
     visit topic_path(topic)
     assert has_no_selector?('.edit_topic'), "User should not see the edit link of other user's topic"
   end
+
+
+  def test_redirect_to_proper_page_after_reply
+    Reply.paginates_per(1)
+    topic = FactoryGirl.create(:topic, replies: [ FactoryGirl.create(:reply) ])
+    sign_in_as(FactoryGirl.create(:user))
+    visit topic_path(topic)
+    find('.create_reply').click
+    fill_in 'reply[content]', with: 'Some content for reply'
+    find('[type=submit]').click
+    assert find('.page.current').has_content?(2), 'User should be redirected to page 2'
+    assert has_content?('Some content for reply')
+  end
 end
