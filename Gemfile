@@ -18,3 +18,8 @@ end
 group :development do
   gem 'quiet_assets'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+end
