@@ -5,11 +5,13 @@ class TopicsController < ApplicationController
 
 
   def new
+    authorize! :create, Topic
     @topic = Topic.new
   end
 
 
   def create
+    authorize! :create, Topic
     topic = current_user.topics.create!(topic_params.merge(last_activity_at: Time.current))
     redirect_to(topic)
   end
