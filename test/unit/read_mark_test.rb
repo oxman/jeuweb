@@ -10,6 +10,7 @@ class ReadMarkTest < ActiveSupport::TestCase
     topic.update_attributes(last_reply: last_reply)
 
     assert_equal [ topic ], user.unread_topics
+    assert_equal false, Topic.with_read_marks_for(user).first.read?
   end
 
 
@@ -21,6 +22,7 @@ class ReadMarkTest < ActiveSupport::TestCase
     topic.update_attributes(last_reply: reply)
 
     assert_equal [], user.unread_topics
+    assert_equal true, Topic.with_read_marks_for(user).first.read?
   end
 
 
@@ -30,6 +32,7 @@ class ReadMarkTest < ActiveSupport::TestCase
     ReadMark.create(user: user, topic: topic)
 
     assert_equal [], user.unread_topics
+    assert_equal true, Topic.with_read_marks_for(user).first.read?
   end
 
 
@@ -38,5 +41,6 @@ class ReadMarkTest < ActiveSupport::TestCase
     topic = FactoryGirl.create(:topic)
 
     assert_equal [ topic ], user.unread_topics
+    assert_equal false, Topic.with_read_marks_for(user).first.read?
   end
 end
