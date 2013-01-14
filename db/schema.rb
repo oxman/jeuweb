@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112212912) do
+ActiveRecord::Schema.define(:version => 20130113184958) do
+
+  create_table "read_marks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.integer  "reply_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "read_marks", ["reply_id"], :name => "index_read_marks_on_reply_id"
+  add_index "read_marks", ["topic_id"], :name => "index_read_marks_on_topic_id"
+  add_index "read_marks", ["user_id"], :name => "index_read_marks_on_user_id"
 
   create_table "replies", :force => true do |t|
     t.text     "content"
