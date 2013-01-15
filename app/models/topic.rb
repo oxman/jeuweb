@@ -20,4 +20,10 @@ class Topic < ActiveRecord::Base
   def read?
     read_attribute(:read) == 1
   end
+
+
+  def first_unread_reply(user)
+    last_read_reply_id = user.read_marks.where(topic_id: id).select(:reply_id).first.try(:reply_id)
+    last_read_reply_id && replies.where('id > ?', last_read_reply_id).first
+  end
 end
