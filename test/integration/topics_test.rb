@@ -117,4 +117,20 @@ class TopicsTest < ActionDispatch::IntegrationTest
     assert find('.page.current').has_content?(2), 'User should be redirected to page 2'
     assert has_content?('New content for reply')
   end
+
+
+  def test_topics_are_emphasised_until_the_user_read_it
+    user         = FactoryGirl.create(:user)
+    topic        = FactoryGirl.create(:topic)
+    first_reply  = FactoryGirl.create(:reply, topic: topic)
+    second_reply = FactoryGirl.create(:reply, topic: topic)
+    last_reply   = FactoryGirl.create(:reply, topic: topic)
+    ReadMark.create(user: user, topic: topic, reply: first_reply)
+    topic.update_attributes(last_reply: last_reply)
+    sign_in_as(user)
+    assert has_selector?('.unread'), 'Topic should be emphasised for user'
+    visit(topic_path(topic))
+    visit(root_path)
+    assert has_no_selector?('.unread'), 'Topic should not be emphasised anymore'
+  end
 end

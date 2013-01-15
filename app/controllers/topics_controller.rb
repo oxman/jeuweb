@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.page(params[:page]).order('last_activity_at DESC')
+    @topics = Topic.with_read_marks_for(current_user).page(params[:page]).order('last_activity_at DESC')
   end
 
 
@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
   def show
     @topic   = Topic.find(params[:id])
     @replies = @topic.replies.page(params[:page]).order('created_at ASC')
+    current_user.read_topic(@topic, @topic.replies.last) if current_user
   end
 
 

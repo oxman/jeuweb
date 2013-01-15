@@ -1,6 +1,9 @@
 %ul
   - @topics.each do |topic|
-    %li= link_to topic.title, topic
+    %li{ class: topic.unread? && 'unread'  }
+      = link_to topic.title, topic
+      - if topic.unread?
+        (nouveaux messages)
 
 %div= paginate(@topics)
 
