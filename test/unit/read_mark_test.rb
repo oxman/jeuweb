@@ -62,6 +62,7 @@ class ReadMarkTest < ActiveSupport::TestCase
     user.read_topic(topic)
 
     assert_equal [], user.unread_topics
+    assert_equal 1, ReadMark.count, 'One mark should be created'
   end
 
 
