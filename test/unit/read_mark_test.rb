@@ -50,6 +50,12 @@ class ReadMarkTest < ActiveSupport::TestCase
   end
 
 
+  def test_topics_are_read_for_nil_user
+    FactoryGirl.create(:topic)
+    assert_equal true, Topic.with_read_marks_for(nil).first.read?
+  end
+
+
   def test_create_read_mark_for_user_and_topic
     user  = FactoryGirl.create(:user)
     topic = FactoryGirl.create(:topic)
