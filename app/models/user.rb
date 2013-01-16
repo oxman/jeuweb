@@ -15,7 +15,12 @@ class User < ActiveRecord::Base
 
 
   def read_topic(topic, reply = nil)
-    mark = read_marks.where(topic_id: topic.id).first_or_initialize
-    mark.update_attributes!(reply_id: reply && reply.id)
+    if reply # Replace the current last read reply only if the new one is more recent.
+      mark = read_marks.where(topic_id: topic.id).first_or_initialize
+      mark.reply = reply if mark.reply.nil? || mark.reply_id < reply.id
+      mark.save!
+    else
+      read_marks.where(topic_id: topic.id).first_or_create!
+    end
   end
 end
