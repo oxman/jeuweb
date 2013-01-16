@@ -5,6 +5,9 @@ class Topic < ActiveRecord::Base
   belongs_to :last_reply, class_name: 'Reply'
   belongs_to :last_reply_author, class_name: 'User'
 
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   has_many :replies
 
   paginates_per(50)
