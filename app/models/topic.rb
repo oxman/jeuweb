@@ -35,4 +35,13 @@ class Topic < ActiveRecord::Base
     last_read_reply_id = user.read_marks.where(topic_id: id).select(:reply_id).first.try(:reply_id)
     last_read_reply_id && replies.where('id > ?', last_read_reply_id).first
   end
+
+
+  def tag_with(names)
+    taggings.destroy_all
+    names.uniq.each do |name|
+      tag = Tag.where(name: name).first_or_create!
+      taggings.where(tag_id: tag.id).first_or_create!
+    end
+  end
 end
