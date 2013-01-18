@@ -44,4 +44,9 @@ class Topic < ActiveRecord::Base
       taggings.where(tag_id: tag.id).first_or_create!
     end
   end
+
+
+  def tag_names
+    tags.pluck(:name)
+  end
 end

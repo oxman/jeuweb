@@ -35,6 +35,7 @@ class TopicsController < ApplicationController
     topic = Topic.find(params[:id])
     authorize! :update, topic
     topic.update_attributes!(topic_params)
+    topic.tag_with(tag_names)
     redirect_to(topic)
   end
 

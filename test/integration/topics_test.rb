@@ -74,15 +74,19 @@ class TopicsTest < ActionDispatch::IntegrationTest
   def test_user_can_edit_his_topics
     user  = FactoryGirl.create(:user)
     topic = FactoryGirl.create(:topic, author: user)
+    topic.tag_with(%w( foo bar ))
     sign_in_as(user)
     visit topic_path(topic)
     assert has_selector?('.edit_topic'), 'User should see the edit link of his topic'
     find('.edit_topic').click
     fill_in 'topic[title]', with: 'New topic title'
     fill_in 'topic[content]', with: 'New topic content'
+    fill_in 'tag_names', with: 'foo'
     find('[type=submit]').click
     assert has_content?('New topic title')
     assert has_content?('New topic content')
+    assert find('.tags').has_content?('foo'), 'Foo tag should appear'
+    assert find('.tags').has_no_content?('bar'), 'Bar tag should not appear anymore'
   end
 
 

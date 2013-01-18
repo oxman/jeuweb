@@ -9,4 +9,8 @@
     = f.text_area :content
 
   %div
+    = label_tag :tag_names
+    = text_field_tag :tag_names, @topic.tag_names.join(' ')
+
+  %div
     = f.submit
