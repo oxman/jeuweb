@@ -13,6 +13,7 @@ class TopicsController < ApplicationController
   def create
     authorize! :create, Topic
     topic = current_user.topics.create!(topic_params.merge(last_activity_at: Time.current))
+    topic.tag_with(tag_names)
     redirect_to(topic)
   end
 
@@ -42,5 +43,10 @@ class TopicsController < ApplicationController
 
   def topic_params
     params[:topic].permit(:title, :content)
+  end
+
+
+  def tag_names
+    params[:tag_names].split(/,| /).reject(&:blank?)
   end
 end

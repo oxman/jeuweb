@@ -1,6 +1,9 @@
 %h2= @topic.title
 %div= @topic.author.name
 %div= @topic.content
+%ul.tags
+  - @topic.tags.each do |tag|
+    %li= tag.name
 
 
 - if can?(:update, @topic)

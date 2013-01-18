@@ -16,9 +16,12 @@ class TopicsTest < ActionDispatch::IntegrationTest
     find('.create_topic').click
     fill_in 'topic[title]', with: 'Some title'
     fill_in 'topic[content]', with: 'Some content'
+    fill_in 'tag_names', with: 'foo bar'
     find('[type=submit]').click
     assert has_content?('Some title')
     assert has_content?('Some content')
+    assert find('.tags').has_content?('foo'), 'Foo tag should appear'
+    assert find('.tags').has_content?('bar'), 'Bar tag should appear'
   end
 
 
