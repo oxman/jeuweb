@@ -8,6 +8,7 @@ Jeuweb::Application.routes.draw do
   get  '/topics/new',      to: 'topics#new',    as: 'new_topic'
   get  '/topics/:id',      to: 'topics#show',   as: 'topic'
   get  '/topics/:id/edit', to: 'topics#edit',   as: 'edit_topic'
+  post '/topics/:id/tag',  to: 'topics#tag',    as: 'tag_topic'
   put  '/topics/:id',      to: 'topics#update', as: 'topic'
   post '/topics',          to: 'topics#create', as: 'topics'
 

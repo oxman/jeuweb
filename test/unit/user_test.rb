@@ -46,4 +46,25 @@ class UserTest < ActiveSupport::TestCase
     ability = Ability.new(nil)
     assert !ability.can?(:update, reply), "Guest user should not be able to edit any reply"
   end
+
+
+  def test_trusted_user_can_tag_other_users_topics
+    topic   = FactoryGirl.create(:topic)
+    ability = Ability.new(FactoryGirl.create(:user, trusted: true))
+    assert ability.can?(:tag, topic), "Trusted user should be able to edit other user's topic"
+  end
+
+
+  def test_untrusted_user_cant_tag_other_users_topics
+    topic   = FactoryGirl.create(:topic)
+    ability = Ability.new(FactoryGirl.create(:user))
+    assert !ability.can?(:tag, topic), "Untrusted user should not be able to edit other user's topic"
+  end
+
+
+  def test_nil_user_cant_tag_other_users_topics
+    topic   = FactoryGirl.create(:topic)
+    ability = Ability.new(nil)
+    assert !ability.can?(:tag, topic), "Guest user should not be able to edit other user's topic"
+  end
 end

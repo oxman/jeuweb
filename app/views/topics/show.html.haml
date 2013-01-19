@@ -5,6 +5,11 @@
   - @topic.tags.each do |tag|
     %li= tag.name
 
+- if can?(:tag, @topic)
+  = form_tag tag_topic_path(@topic) do
+    = text_field_tag :tag_names, @topic.tag_names.join(' ')
+    = submit_tag 'Attribuer les tags'
+
 
 - if can?(:update, @topic)
   %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')

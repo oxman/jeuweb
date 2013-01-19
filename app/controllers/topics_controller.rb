@@ -40,6 +40,14 @@ class TopicsController < ApplicationController
   end
 
 
+  def tag
+    topic = Topic.find(params[:id])
+    authorize! :tag, topic
+    topic.tag_with(tag_names)
+    redirect_to(topic)
+  end
+
+
   private
 
   def topic_params
