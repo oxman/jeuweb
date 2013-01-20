@@ -23,4 +23,13 @@ class ScoreTest < ActiveSupport::TestCase
     user.score_topic(topic, Score::POSITIVE)
     assert_equal 1, topic.score
   end
+
+
+  def test_score_should_be_reversed_when_user_change_vote
+    topic = FactoryGirl.create(:topic)
+    user = FactoryGirl.create(:user)
+    user.score_topic(topic, Score::POSITIVE)
+    user.score_topic(topic, Score::NEGATIVE)
+    assert_equal -1, topic.score
+  end
 end

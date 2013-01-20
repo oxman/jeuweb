@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
 
   def score_topic(topic, value)
-    topic.scores.where(user_id: id).first_or_create(value: value)
+    score = topic.scores.where(user_id: id).first_or_initialize
+    score.update_attributes!(value: value)
   end
 end
