@@ -4,5 +4,12 @@ class Reply < ActiveRecord::Base
   belongs_to :author, class_name: 'User'
   belongs_to :topic
 
-  paginates_per(50)
+  has_many :scores, as: :scorable
+
+  paginates_per 50
+
+
+  def score
+    scores.sum(:value)
+  end
 end

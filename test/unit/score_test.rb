@@ -32,4 +32,13 @@ class ScoreTest < ActiveSupport::TestCase
     user.score_topic(topic, Score::NEGATIVE)
     assert_equal -1, topic.score
   end
+
+
+  def test_user_can_score_reply_once
+    topic = FactoryGirl.create(:topic)
+    user = FactoryGirl.create(:user)
+    user.score(topic, Score::POSITIVE)
+    user.score(topic, Score::POSITIVE)
+    assert_equal 1, topic.score
+  end
 end
