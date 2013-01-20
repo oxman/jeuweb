@@ -19,7 +19,7 @@ class TopicsController < ApplicationController
 
 
   def show
-    @topic   = Topic.find(params[:id])
+    @topic   = Topic.with_score_values_for(current_user).find(params[:id])
     @replies = @topic.replies.page(params[:page]).order('created_at ASC').with_score_values_for(current_user)
     current_user.read_topic(@topic, @replies.last) if current_user
   end
@@ -69,6 +69,10 @@ class TopicsController < ApplicationController
 
 
   def score_value
-    params[:vote] == 'positive' ? Score::POSITIVE : Score::NEGATIVE
+    case params[:vote]
+    when 'positive' then Score::POSITIVE
+    when 'negative' then Score::NEGATIVE
+    else Score::NEUTRAL
+    end
   end
 end

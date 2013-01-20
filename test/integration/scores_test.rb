@@ -7,10 +7,16 @@ class TagsTest < ActionDispatch::IntegrationTest
     sign_in_as(user)
     visit(topic_path(topic))
     assert find('.score .count').has_content?(0), 'Should have no vote yet'
+    assert find('.score').has_no_selector?('.selected'), 'No vote link should be selected'
     find('.score .score_positive').click
     assert find('.score .count').has_content?(1), 'Should report the vote'
+    assert find('.score').has_selector?('.score_positive.selected'), 'Upvote link should be selected'
     find('.score .score_negative').click
     assert find('.score .count').has_content?(-1), 'Should reverse the existing vote'
+    assert find('.score').has_selector?('.score_negative.selected'), 'Downvote link should be selected'
+    find('.score .score_negative').click
+    assert find('.score .count').has_content?(0), 'Should have no vote anymore'
+    assert find('.score').has_no_selector?('.selected'), 'No vote link should be selected anymore'
   end
 
 

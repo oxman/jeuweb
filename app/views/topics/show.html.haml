@@ -11,9 +11,11 @@
     = submit_tag 'Attribuer les tags'
 
 .score
-  = link_to_if can?(:score, @topic), '+1', score_topic_path(@topic, vote: 'positive'), method: :post, class: 'score_positive'
+  - voted = @topic.score_value == Score::POSITIVE
+  = link_to_if can?(:score, @topic), '+1', score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
   .count= @topic.score
-  = link_to_if can?(:score, @topic), '-1', score_topic_path(@topic, vote: 'negative'), method: :post, class: 'score_negative'
+  - voted = @topic.score_value == Score::NEGATIVE
+  = link_to_if can?(:score, @topic), '-1', score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
 - if can?(:update, @topic)
   %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
