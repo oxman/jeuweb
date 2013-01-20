@@ -9,8 +9,9 @@ class Topic < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   has_many :replies
+  has_many :scores, as: :scorable
 
-  paginates_per(50)
+  paginates_per 50
 
 
   def self.with_read_marks_for(user)
@@ -48,5 +49,10 @@ class Topic < ActiveRecord::Base
 
   def tag_names
     tags.pluck(:name)
+  end
+
+
+  def score
+    scores.sum(:value)
   end
 end

@@ -23,4 +23,9 @@ class User < ActiveRecord::Base
       read_marks.where(topic_id: topic.id).first_or_create!
     end
   end
+
+
+  def score_topic(topic, value)
+    topic.scores.where(user_id: id).first_or_create(value: value)
+  end
 end
