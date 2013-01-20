@@ -54,6 +54,10 @@ class RepliesController < ApplicationController
 
 
   def score_value
-    params[:vote] == 'positive' ? Score::POSITIVE : Score::NEGATIVE
+    case params[:vote]
+    when 'positive' then Score::POSITIVE
+    when 'negative' then Score::NEGATIVE
+    else Score::NEUTRAL
+    end
   end
 end

@@ -21,9 +21,15 @@ class TagsTest < ActionDispatch::IntegrationTest
     sign_in_as(user)
     visit(topic_path(topic))
     assert find('.replies .score .count').has_content?(0), 'Should have no vote yet'
+    assert find('.replies .score').has_no_selector?('.selected'), 'No vote link should be selected'
     find('.replies .score .score_positive').click
     assert find('.replies .score .count').has_content?(1), 'Should report the vote'
+    assert find('.replies').has_selector?('.score_positive.selected'), 'Upvote link should be selected'
     find('.replies .score .score_negative').click
     assert find('.replies .score .count').has_content?(-1), 'Should reverse the existing vote'
+    assert find('.replies').has_selector?('.score_negative.selected'), 'Downvote link should be selected'
+    find('.replies .score .score_negative').click
+    assert find('.replies .score .count').has_content?(0), 'Should have no vote anymore'
+    assert find('.replies .score').has_no_selector?('.selected'), 'No vote link should be selected anymore'
   end
 end
