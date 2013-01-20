@@ -12,7 +12,7 @@
 
 .score
   = link_to '+1', score_topic_path(@topic, vote: 'positive'), method: :post, class: 'score_positive'
-  = @topic.score
+  .count= @topic.score
   = link_to '-1', score_topic_path(@topic, vote: 'negative'), method: :post, class: 'score_negative'
 
 - if can?(:update, @topic)

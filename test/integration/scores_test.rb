@@ -6,8 +6,10 @@ class TagsTest < ActionDispatch::IntegrationTest
     topic = FactoryGirl.create(:topic)
     sign_in_as(user)
     visit(topic_path(topic))
-    assert find('.score').has_content?(0)
+    assert find('.score .count').has_content?(0), 'Should have no vote yet'
     find('.score .score_positive').click
-    assert find('.score').has_content?(1)
+    assert find('.score .count').has_content?(1), 'Should report the vote'
+    find('.score .score_negative').click
+    assert find('.score .count').has_content?(-1), 'Should reverse the existing vote'
   end
 end
