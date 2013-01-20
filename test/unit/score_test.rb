@@ -19,8 +19,8 @@ class ScoreTest < ActiveSupport::TestCase
   def test_user_can_score_topic_once
     topic = FactoryGirl.create(:topic)
     user = FactoryGirl.create(:user)
-    user.score_topic(topic, Score::POSITIVE)
-    user.score_topic(topic, Score::POSITIVE)
+    user.score(topic, Score::POSITIVE)
+    user.score(topic, Score::POSITIVE)
     assert_equal 1, topic.score
   end
 
@@ -28,8 +28,8 @@ class ScoreTest < ActiveSupport::TestCase
   def test_score_should_be_reversed_when_user_change_vote
     topic = FactoryGirl.create(:topic)
     user = FactoryGirl.create(:user)
-    user.score_topic(topic, Score::POSITIVE)
-    user.score_topic(topic, Score::NEGATIVE)
+    user.score(topic, Score::POSITIVE)
+    user.score(topic, Score::NEGATIVE)
     assert_equal -1, topic.score
   end
 

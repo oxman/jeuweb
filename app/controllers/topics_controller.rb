@@ -51,7 +51,7 @@ class TopicsController < ApplicationController
   def score
     topic = Topic.find(params[:id])
     authorize! :score, topic
-    current_user.score_topic(topic, score_value)
+    current_user.score(topic, score_value)
     redirect_to(:back)
   end
 
