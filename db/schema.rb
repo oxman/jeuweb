@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119104607) do
+ActiveRecord::Schema.define(:version => 20130120105415) do
 
   create_table "read_marks", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(:version => 20130119104607) do
 
   add_index "replies", ["author_id"], :name => "index_replies_on_author_id"
   add_index "replies", ["topic_id"], :name => "index_replies_on_topic_id"
+
+  create_table "scores", :force => true do |t|
+    t.string   "scorable_type"
+    t.integer  "scorable_id"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "scores", ["scorable_type", "scorable_id", "user_id"], :name => "index_scores_on_scorable_type_and_scorable_id_and_user_id", :unique => true
+  add_index "scores", ["scorable_type", "scorable_id"], :name => "index_scores_on_scorable_type_and_scorable_id"
+  add_index "scores", ["user_id"], :name => "index_scores_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "topic_id"

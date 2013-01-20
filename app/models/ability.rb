@@ -9,6 +9,7 @@ class Ability
       can :create, Reply
       can :update, Reply, author_id: user.id
       can :tag, Topic if user.trusted?
+      can :score, Topic if user.trusted?
     end
   end
 end
