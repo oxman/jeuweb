@@ -48,6 +48,14 @@ class TopicsController < ApplicationController
   end
 
 
+  def score
+    topic = Topic.find(params[:id])
+    authorize! :score, topic
+    current_user.score_topic(topic, score_value)
+    redirect_to(:back)
+  end
+
+
   private
 
   def topic_params
@@ -57,5 +65,10 @@ class TopicsController < ApplicationController
 
   def tag_names
     params[:tag_names].split(/,| /).reject(&:blank?)
+  end
+
+
+  def score_value
+    params[:vote] == 'positive' ? Score::POSITIVE : Score::NEGATIVE
   end
 end
