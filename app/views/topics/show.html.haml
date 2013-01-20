@@ -23,12 +23,17 @@
 - if can?(:create, Reply)
   %div= link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
 
-- @replies.each do |reply|
-  %div
-    %div= reply.author.name
-    %div= reply.content
+.replies
+  - @replies.each do |reply|
+    %div
+      %div= reply.author.name
+      %div= reply.content
+      .score
+        = link_to_if can?(:score, reply), '+1', score_topic_reply_path(@topic, reply, vote: 'positive'), method: :post, class: 'score_positive'
+        .count= reply.score
+        = link_to_if can?(:score, reply), '-1', score_topic_reply_path(@topic, reply, vote: 'negative'), method: :post, class: 'score_negative'
 
-    - if can?(:update, reply)
-      %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+      - if can?(:update, reply)
+        %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
 
 = paginate(@replies)

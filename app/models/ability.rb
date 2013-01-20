@@ -10,6 +10,7 @@ class Ability
       can :update, Reply, author_id: user.id
       can :tag, Topic if user.trusted?
       can :score, Topic if user.trusted?
+      can :score, Reply if user.trusted?
     end
   end
 end

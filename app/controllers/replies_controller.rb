@@ -37,9 +37,23 @@ class RepliesController < ApplicationController
   end
 
 
+  def score
+    topic = Topic.find(params[:topic_id])
+    reply = topic.replies.find(params[:id])
+    authorize! :score, reply
+    current_user.score(reply, score_value)
+    redirect_to(:back)
+  end
+
+
   private
 
   def reply_params
     params[:reply].permit(:content)
+  end
+
+
+  def score_value
+    params[:vote] == 'positive' ? Score::POSITIVE : Score::NEGATIVE
   end
 end
