@@ -17,4 +17,15 @@ class TaggingTest < ActiveSupport::TestCase
     assert_equal %w( foo bar ), Tag.pluck(:name)
     assert_equal 1, Tagging.count
   end
+
+
+  def test_filtering_topics_by_tags
+    topic_1 = FactoryGirl.create(:topic); topic_1.tag_with(%w( foo bar ))
+    topic_2 = FactoryGirl.create(:topic); topic_2.tag_with(%w( foo ))
+    topic_3 = FactoryGirl.create(:topic); topic_3.tag_with(%w( bar ))
+
+    assert_equal [ topic_1, topic_3 ], Topic.with_tags(%w( bar )).order(:id)
+    assert_equal [ topic_1, topic_2 ], Topic.with_tags(%w( foo )).order(:id)
+    assert_equal [ topic_1 ], Topic.with_tags(%w( foo bar )).order(:id)
+  end
 end
