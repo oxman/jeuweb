@@ -22,6 +22,13 @@ class Topic < ActiveRecord::Base
   end
 
 
+  def self.with_score_values_for(user)
+    return scoped unless user
+    select('topics.*, scores.value AS score_value')
+    .joins("LEFT JOIN scores ON scores.scorable_type = 'Topic' AND scores.scorable_id = topics.id AND scores.user_id = %d" % [ user.id ])
+  end
+
+
   def read?
     read_attribute(:read) != 0
   end
@@ -54,5 +61,10 @@ class Topic < ActiveRecord::Base
 
   def score
     scores.sum(:value)
+  end
+
+
+  def score_value
+    read_attribute(:score_value)
   end
 end
