@@ -29,9 +29,11 @@
       %div= reply.author.name
       %div= reply.content
       .score
-        = link_to_if can?(:score, reply), '+1', score_topic_reply_path(@topic, reply, vote: 'positive'), method: :post, class: 'score_positive'
+        - voted = reply.score_value == Score::POSITIVE
+        = link_to_if can?(:score, reply), '+1', score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
         .count= reply.score
-        = link_to_if can?(:score, reply), '-1', score_topic_reply_path(@topic, reply, vote: 'negative'), method: :post, class: 'score_negative'
+        - voted = reply.score_value == Score::NEGATIVE
+        = link_to_if can?(:score, reply), '-1', score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
       - if can?(:update, reply)
         %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')

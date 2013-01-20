@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic   = Topic.find(params[:id])
-    @replies = @topic.replies.page(params[:page]).order('created_at ASC')
+    @replies = @topic.replies.page(params[:page]).order('created_at ASC').with_score_values_for(current_user)
     current_user.read_topic(@topic, @replies.last) if current_user
   end
 
