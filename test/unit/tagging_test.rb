@@ -24,8 +24,21 @@ class TaggingTest < ActiveSupport::TestCase
     topic_2 = FactoryGirl.create(:topic); topic_2.tag_with(%w( foo ))
     topic_3 = FactoryGirl.create(:topic); topic_3.tag_with(%w( bar ))
 
-    assert_equal [ topic_1, topic_3 ], Topic.with_tags(%w( bar )).order(:id)
-    assert_equal [ topic_1, topic_2 ], Topic.with_tags(%w( foo )).order(:id)
-    assert_equal [ topic_1 ], Topic.with_tags(%w( foo bar )).order(:id)
+    assert_equal [ topic_1, topic_3 ], Topic.with_tags(Tag.where(name: %w( bar ))).order(:id)
+    assert_equal [ topic_1, topic_2 ], Topic.with_tags(Tag.where(name: %w( foo ))).order(:id)
+    assert_equal [ topic_1 ], Topic.with_tags(Tag.where(name: %w( foo bar ))).order(:id)
+  end
+
+
+  def test_filtering_topics_by_existing_tag_when_tag_is_not_attributed
+    tag = Tag.create(name: 'foo')
+    FactoryGirl.create(:topic)
+    assert_equal [], Topic.with_tags([ tag ])
+  end
+
+
+  def test_filtering_topics_by_no_tag
+    topic = FactoryGirl.create(:topic)
+    assert_equal [ topic ], Topic.with_tags([])
   end
 end

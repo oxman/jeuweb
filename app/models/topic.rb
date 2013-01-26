@@ -14,11 +14,10 @@ class Topic < ActiveRecord::Base
   paginates_per 50
 
 
-  def self.with_tags(tag_names)
+  def self.with_tags(tags)
     relation = scoped
-    tag_ids  = Tag.where(name: tag_names).pluck(:id)
-    tag_ids.each_with_index do |tag_id, index|
-      relation = relation.joins('JOIN taggings AS taggings_%d ON taggings_%d.topic_id = topics.id AND taggings_%d.tag_id = %d' % [ index, index, index, tag_id ])
+    tags.each_with_index do |tag, index|
+      relation = relation.joins('JOIN taggings AS taggings_%d ON taggings_%d.topic_id = topics.id AND taggings_%d.tag_id = %d' % [ index, index, index, tag.id ])
     end
     relation
   end
