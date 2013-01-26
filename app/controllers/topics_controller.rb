@@ -4,6 +4,13 @@ class TopicsController < ApplicationController
   end
 
 
+  def search
+    @tags          = Tag.scoped
+    @searched_tags = Tag.where(name: tag_names)
+    @topics        = Topic.with_tags(@searched_tags).page(params[:page])
+  end
+
+
   def new
     authorize! :create, Topic
     @topic = Topic.new

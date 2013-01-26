@@ -1,0 +1,28 @@
+%h4 Tous les tags
+%ul#available_tags
+  - @tags.each do |tag|
+    - if tag.in?(@searched_tags)
+      %li.active
+        - tag_names = @searched_tags.map(&:name).reject { |name| name == tag.name }
+        - url       = topics_search_path(tags: tag_names.join(','))
+        = link_to("#{tag.name} (-)", url, class: %W( tag tag-#{tag.id} ))
+    - else
+      %li
+        - tag_names = @searched_tags.map(&:name).append(tag.name)
+        - url       = topics_search_path(tags: tag_names.join(','))
+        = link_to("#{tag.name} (+)", url, class: %W( tag tag-#{tag.id} ))
+
+%hr
+
+%ul
+  - @topics.each do |topic|
+    %li{ class: topic.unread? && 'unread'  }
+      = link_to topic.title, topic
+      - if topic.unread?
+        (nouveaux messages)
+      %ul.tags
+        - topic.tags.each do |tag|
+          %li.tag{ class: "tag-#{tag.id}" }= tag.name
+      .score= topic.score
+
+%div= paginate(@topics)

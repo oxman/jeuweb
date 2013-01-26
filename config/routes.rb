@@ -5,6 +5,7 @@ Jeuweb::Application.routes.draw do
   post   '/sign_in',  to: 'sessions#create'
   delete '/sign_out', to: 'sessions#destroy'
 
+  get  '/topics/search',    to: 'topics#search', as: 'topics_search'
   get  '/topics/new',       to: 'topics#new',    as: 'new_topic'
   get  '/topics/:id',       to: 'topics#show',   as: 'topic'
   get  '/topics/:id/edit',  to: 'topics#edit',   as: 'edit_topic'
