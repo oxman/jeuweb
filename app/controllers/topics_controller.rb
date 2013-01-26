@@ -64,7 +64,7 @@ class TopicsController < ApplicationController
 
 
   def tag_names
-    params[:tag_names].split(/,| /).reject(&:blank?)
+    Tag.extract(params[:tag_names] || params[:tags] || '')
   end
 
 
