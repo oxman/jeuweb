@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127175021) do
+ActiveRecord::Schema.define(:version => 20130127205725) do
 
   create_table "read_marks", :force => true do |t|
     t.integer  "user_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130127175021) do
     t.datetime "updated_at",                          :null => false
     t.datetime "last_activity_at"
     t.integer  "replies_count",        :default => 0, :null => false
+    t.integer  "score",                :default => 0, :null => false
   end
 
   add_index "topics", ["author_id"], :name => "index_topics_on_author_id"

@@ -1,18 +1,10 @@
 require 'test_helper'
 
 class ScoreTest < ActiveSupport::TestCase
-  def test_topic_has_score_zero
+  def test_topic_has_initial_score_of_zero
     topic = FactoryGirl.create(:topic)
+    assert_equal 0, topic.computed_score
     assert_equal 0, topic.score
-  end
-
-
-  def test_topic_has_score_one
-    topic = FactoryGirl.create(:topic)
-    FactoryGirl.create(:positive_score, scorable: topic)
-    FactoryGirl.create(:positive_score, scorable: topic)
-    FactoryGirl.create(:negative_score, scorable: topic)
-    assert_equal 1, topic.score
   end
 
 
@@ -21,6 +13,7 @@ class ScoreTest < ActiveSupport::TestCase
     user = FactoryGirl.create(:user)
     user.score(topic, Score::POSITIVE)
     user.score(topic, Score::POSITIVE)
+    assert_equal 1, topic.computed_score
     assert_equal 1, topic.score
   end
 
@@ -30,6 +23,7 @@ class ScoreTest < ActiveSupport::TestCase
     user = FactoryGirl.create(:user)
     user.score(topic, Score::POSITIVE)
     user.score(topic, Score::NEGATIVE)
+    assert_equal -1, topic.computed_score
     assert_equal -1, topic.score
   end
 
@@ -39,6 +33,7 @@ class ScoreTest < ActiveSupport::TestCase
     user = FactoryGirl.create(:user)
     user.score(topic, Score::POSITIVE)
     user.score(topic, Score::POSITIVE)
+    assert_equal 1, topic.computed_score
     assert_equal 1, topic.score
   end
 end

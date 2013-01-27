@@ -26,7 +26,10 @@ class User < ActiveRecord::Base
 
 
   def score(scorable, value)
-    score = scorable.scores.where(user_id: id).first_or_initialize
-    score.update_attributes!(value: value)
+    Score.transaction do
+      score = scorable.scores.where(user_id: id).first_or_initialize
+      score.update_attributes!(value: value)
+      scorable.update_attributes!(score: scorable.computed_score)
+    end
   end
 end
