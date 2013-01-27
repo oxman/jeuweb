@@ -6,6 +6,6 @@ class Tag < ActiveRecord::Base
 
 
   def self.extract(string)
-    string.split.join(' ').split(',').map(&:strip).reject(&:blank?).uniq
+    string.split(/\s|,/).map { |name| name.strip.humanize }.reject(&:blank?).uniq
   end
 end
