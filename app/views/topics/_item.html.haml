@@ -7,4 +7,11 @@
       - topic.tags.each do |tag|
         = render tag
 
-  .score= topic.score
+  .score
+    note
+    %div= topic.score
+
+  .replies
+    réponses
+    %div= topic.replies_count
+

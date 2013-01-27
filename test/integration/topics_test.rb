@@ -44,6 +44,9 @@ class TopicsTest < ActionDispatch::IntegrationTest
     find('[type=submit]').click
     assert has_content?('Some content for reply')
     assert has_content?('1 réponse')
+    visit(root_path)
+    puts body
+    assert has_content?('1 réponse')
   end
 
 

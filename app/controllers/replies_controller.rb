@@ -12,6 +12,7 @@ class RepliesController < ApplicationController
 
     Topic.transaction do
       reply = topic.replies.create!(reply_params.merge(author: current_user))
+      topic.increment(:replies_count)
       topic.update_attributes!(last_reply: reply, last_reply_author: current_user, last_activity_at: Time.current)
     end
 

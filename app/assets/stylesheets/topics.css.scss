@@ -40,15 +40,20 @@
       }
     }
 
-    .score {
-      color:       #333;
+    .replies, .score {
+      color:       #777;
       float:       right;
-      font-size:   24px;
       font-weight: bold;
       height:      80px;
-      line-height: 55px;
       padding:     12px;
-      text-align:  right;
+      text-align:  center;
+      width:       80px;
+
+      div {
+        color:       #333;
+        font-size:   32px;
+        line-height: 52px;
+      }
     }
   }
 }
