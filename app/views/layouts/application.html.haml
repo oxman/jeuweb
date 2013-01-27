@@ -8,13 +8,28 @@
     = csrf_meta_tags
 
   %body
-    %div
-      = link_to 'JeuWeb', root_path
-      - if current_user
-        = current_user.name
-        = link_to('Déconnexion', sign_out_path, method: :delete)
-      - else
-        Invité
-        = link_to('Connexion', sign_in_path)
+    %header
+      %h1= link_to 'JeuWeb', root_path
 
-    = yield
+      %section#current_user
+        - if current_user
+          %div
+            %strong= current_user.name
+
+          %div= link_to('Déconnexion', sign_out_path, method: :delete)
+
+        - else
+          %div
+            %strong Invité
+
+          %div= link_to('Connexion', sign_in_path)
+
+    #container
+      %nav#main
+        %ul
+          %li= link_to 'Discussions', root_path
+
+          %li= link_to 'Messagerie', ''
+
+      %section#content
+        = yield

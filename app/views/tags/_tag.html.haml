@@ -1,0 +1,15 @@
+- if !@searched_tags
+  %li
+    - url = topics_search_path(tags: tag.name)
+    = link_to(tag.name, url, class: %W( tag tag-#{tag.id} ))
+
+- elsif @searched_tags.include?(tag)
+  %li.active.remove
+    - tag_names = @searched_tags.map(&:name).reject { |name| name == tag.name }
+    - url       = topics_search_path(tags: tag_names.join(','))
+    = link_to("- #{tag.name}", url, class: %W( tag tag-#{tag.id} ))
+- else
+  %li.add
+    - tag_names = @searched_tags.map(&:name).append(tag.name)
+    - url       = topics_search_path(tags: tag_names.join(','))
+    = link_to("+ #{tag.name}", url, class: %W( tag tag-#{tag.id} ))

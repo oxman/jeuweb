@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   def search
     @tags          = Tag.scoped
     @searched_tags = Tag.where(name: tag_names)
-    @topics        = Topic.with_tags(@searched_tags).page(params[:page])
+    @topics        = Topic.with_read_marks_for(current_user).with_tags(@searched_tags).page(params[:page]).order('last_activity_at DESC')
   end
 
 

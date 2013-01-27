@@ -1,13 +1,6 @@
-%ul
+%ul#topics
   - @topics.each do |topic|
-    %li{ class: topic.unread? && 'unread'  }
-      = link_to topic.title, topic
-      - if topic.unread?
-        (nouveaux messages)
-      %ul.tags
-        - topic.tags.each do |tag|
-          %li= tag.name
-      .score= topic.score
+    = render 'topics/item', topic: topic
 
 %div= paginate(@topics)
 

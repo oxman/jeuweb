@@ -1,0 +1,54 @@
+#topics {
+  .topic.unread {
+    h4 {
+      font-weight: bold;
+    }
+  }
+
+  .topic {
+    background:    #eee;
+    height:        80px;
+    margin-bottom: 12px;
+    overflow:      auto;
+    width:         100%;
+
+    .avatar {
+      float:  left;
+      width:  0px;
+      height: 80px;
+      background: red;
+    }
+
+    .meta_data {
+      float:   left;
+      height:  80px;
+      padding: 12px;
+
+      h4 {
+        font-size:     24px;
+        margin-bottom: 8px;
+
+        a {
+          display: block;
+        }
+      }
+
+      .tags {
+        li {
+          display: inline-block;
+        }
+      }
+    }
+
+    .score {
+      color:       #333;
+      float:       right;
+      font-size:   24px;
+      font-weight: bold;
+      height:      80px;
+      line-height: 55px;
+      padding:     12px;
+      text-align:  right;
+    }
+  }
+}
