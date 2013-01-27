@@ -12,10 +12,10 @@
 
 .score
   - voted = @topic.score_value == Score::POSITIVE
-  = link_to_if can?(:score, @topic), '+1', score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+  = link_to_if can?(:score, @topic), raw('&#x25B2'), score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
   .count= @topic.score
   - voted = @topic.score_value == Score::NEGATIVE
-  = link_to_if can?(:score, @topic), '-1', score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+  = link_to_if can?(:score, @topic), raw('&#x25BC'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
 - if can?(:update, @topic)
   %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
@@ -32,10 +32,10 @@
       %div= reply.content
       .score
         - voted = reply.score_value == Score::POSITIVE
-        = link_to_if can?(:score, reply), '+1', score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+        = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
         .count= reply.score
         - voted = reply.score_value == Score::NEGATIVE
-        = link_to_if can?(:score, reply), '-1', score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+        = link_to_if can?(:score, reply), raw('&#x25BC'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
       - if can?(:update, reply)
         %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
