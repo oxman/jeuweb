@@ -2,14 +2,18 @@
   %li
     - url = topics_search_path(tags: tag.name)
     = link_to(tag.name, url, class: %W( tag tag-#{tag.id} ))
+    = "× #{tag.topics_count}" if display_topics_count
 
 - elsif @searched_tags.include?(tag)
   %li.active.remove
     - tag_names = @searched_tags.map(&:name).reject { |name| name == tag.name }
     - url       = topics_search_path(tags: tag_names.join(','))
-    = link_to("- #{tag.name}", url, class: %W( tag tag-#{tag.id} ))
+    = link_to("− #{tag.name}", url, class: %W( tag tag-#{tag.id} ))
+    = "× #{tag.topics_count}" if display_topics_count
+
 - else
   %li.add
     - tag_names = @searched_tags.map(&:name).append(tag.name)
     - url       = topics_search_path(tags: tag_names.join(','))
     = link_to("+ #{tag.name}", url, class: %W( tag tag-#{tag.id} ))
+    = "× #{tag.topics_count}" if display_topics_count

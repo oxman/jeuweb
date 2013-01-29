@@ -5,7 +5,7 @@
     %h4= link_to topic.title, topic
     %ul.tags
       - topic.tags.each do |tag|
-        = render tag
+        = render tag, display_topics_count: false
 
   .score
     note
