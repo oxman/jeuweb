@@ -28,8 +28,14 @@
       %nav#main
         %ul
           %li= link_to 'Discussions', root_path
-
           %li= link_to 'Messagerie', ''
+
+        %ul
+          %li= link_to 'JeuWeb', topics_search_path(tags: 'JeuWeb')
+          %li= link_to "Demandes d'aide", topics_search_path(tags: 'Question')
+          %li= link_to 'Débats', topics_search_path(tags: 'Débat')
+          %li= link_to 'Projets', topics_search_path(tags: 'Projet')
+
 
       %section#content
         = yield
