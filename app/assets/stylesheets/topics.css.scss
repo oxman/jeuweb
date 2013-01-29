@@ -1,3 +1,7 @@
+$itemHeight: 80px;
+$backgroundColor: #eee;
+
+
 #topics {
   .topic.unread {
     h4 {
@@ -6,8 +10,7 @@
   }
 
   .topic {
-    background:    #eee;
-    height:        80px;
+    background:    $backgroundColor;
     margin-bottom: 12px;
     overflow:      auto;
     width:         100%;
@@ -15,17 +18,17 @@
     .avatar {
       float:  left;
       width:  0px;
-      height: 80px;
+      height: 100%;
       background: red;
     }
 
     .meta_data {
       float:   left;
-      height:  80px;
+      height:  100%;
       padding: 12px;
 
       h4 {
-        font-size:     24px;
+        font-size:     1em;
         margin-bottom: 8px;
 
         a {
@@ -44,15 +47,15 @@
       color:       #777;
       float:       right;
       font-weight: bold;
-      height:      80px;
+      height:      100%;
       padding:     12px;
       text-align:  center;
       width:       80px;
 
       div {
         color:       #333;
-        font-size:   32px;
-        line-height: 52px;
+        font-size:   1em;
+        line-height: 2em;
       }
     }
   }

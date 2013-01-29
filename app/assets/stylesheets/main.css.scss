@@ -1,8 +1,24 @@
+// http://colorschemedesigner.com/#3p11TfvU8w0w0
+
 $navigationBoxWidth: 100px;
 
+
+$linkColor: #297D98;
+$linkColorHover: #72A1B0;
+$backgroundColor: #eee;
+
+body {
+  background: #fdfdfd;
+  font-size: 20px;
+}
+
 a {
-  color:           steelblue;
+  color:           $linkColor;
   text-decoration: none;
+}
+
+a:hover {
+  color: $linkColorHover;
 }
 
 body {
@@ -15,13 +31,13 @@ body header {
 
   h1 {
     float:       left;
-    font-size:   42px;
+    font-size:   2.8em;
     font-weight: bold;
     padding:     12px;
   }
 
   section#current_user {
-    background:   #eee;
+    background:   $backgroundColor;
     float:        right;
     margin-right: 12px;
     padding:      12px;
@@ -34,9 +50,11 @@ nav#main {
   width: $navigationBoxWidth;
 
   ul {
+    margin-bottom: 30px;
+
     li {
       a {
-        background:    #eee;
+        background:    $backgroundColor;
         display:       block;
         margin-bottom: 12px;
         padding:       12px;
@@ -50,6 +68,10 @@ nav#main {
       margin-bottom: 0;
     }
   }
+
+  ul:last-child {
+    margin-bottom: 0;
+  }
 }
 
 section#content {
@@ -58,6 +80,6 @@ section#content {
   margin-right: 12px;
 
   h2 {
-    font-size: 24px;
+    font-size: 1.6em;
   }
 }

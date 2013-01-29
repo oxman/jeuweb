@@ -1,10 +1,11 @@
-$tagsBoxWidth: 160px;
+$tagsBoxWidth: 180px;
 
 .tag {
   display:       inline-block;
-  border:        1px solid #999;
+  // border:        1px solid #999;
   border-radius: 4px;
   padding:       4px 8px;
+  background:    #d6d6d6;
 }
 
 #topics.search {
