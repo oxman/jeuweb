@@ -16,12 +16,12 @@ class TopicsTest < ActionDispatch::IntegrationTest
     find('.create_topic').click
     fill_in 'topic[title]', with: 'Some title'
     fill_in 'topic[content]', with: 'Some content'
-    fill_in 'tag_names', with: 'foo bar'
+    fill_in 'tag_names', with: 'Foo Bar'
     find('[type=submit]').click
     assert has_content?('Some title')
     assert has_content?('Some content')
-    assert find('.tags').has_content?('foo'), 'Foo tag should appear'
-    assert find('.tags').has_content?('bar'), 'Bar tag should appear'
+    assert find('.tags').has_content?('Foo'), 'Foo tag should appear'
+    assert find('.tags').has_content?('Bar'), 'Bar tag should appear'
   end
 
 
@@ -39,14 +39,12 @@ class TopicsTest < ActionDispatch::IntegrationTest
     sign_in_as(user)
     visit topic_path(topic)
     assert has_selector?('.create_reply'), 'Signed in user should see a link to reply to the topic'
-    find('.create_reply').click
+    find('.controls .create_reply').click
     fill_in 'reply[content]', with: 'Some content for reply'
     find('[type=submit]').click
     assert has_content?('Some content for reply')
-    assert has_content?('1 réponse')
     visit(root_path)
-    puts body
-    assert has_content?('1 réponse')
+    assert find('.replies .count').has_content?('1')
   end
 
 
@@ -77,19 +75,19 @@ class TopicsTest < ActionDispatch::IntegrationTest
   def test_user_can_edit_his_topics
     user  = FactoryGirl.create(:user)
     topic = FactoryGirl.create(:topic, author: user)
-    topic.tag_with(%w( foo bar ))
+    topic.tag_with(%w( Foo Bar ))
     sign_in_as(user)
     visit topic_path(topic)
     assert has_selector?('.edit_topic'), 'User should see the edit link of his topic'
     find('.edit_topic').click
     fill_in 'topic[title]', with: 'New topic title'
     fill_in 'topic[content]', with: 'New topic content'
-    fill_in 'tag_names', with: 'foo'
+    fill_in 'tag_names', with: 'Foo'
     find('[type=submit]').click
     assert has_content?('New topic title')
     assert has_content?('New topic content')
-    assert find('.tags').has_content?('foo'), 'Foo tag should appear'
-    assert find('.tags').has_no_content?('bar'), 'Bar tag should not appear anymore'
+    assert find('.tags').has_content?('Foo'), 'Foo tag should appear'
+    assert find('.tags').has_no_content?('Bar'), 'Bar tag should not appear anymore'
   end
 
 
@@ -107,7 +105,7 @@ class TopicsTest < ActionDispatch::IntegrationTest
     topic = FactoryGirl.create(:topic, replies: [ FactoryGirl.create(:reply) ])
     sign_in_as(FactoryGirl.create(:user))
     visit topic_path(topic)
-    find('.create_reply').click
+    find('.controls .create_reply').click
     fill_in 'reply[content]', with: 'Some content for reply'
     find('[type=submit]').click
     assert find('.page.current').has_content?(2), 'User should be redirected to page 2'
