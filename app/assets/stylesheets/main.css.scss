@@ -1,12 +1,17 @@
 $navigationBoxWidth: 100px;
 
-a {
-  color:           steelblue;
-  text-decoration: none;
-}
 
 body {
   min-width: 700px;
+
+  a {
+    color:           steelblue;
+    text-decoration: none;
+  }
+
+  strong {
+    font-weight: bold;
+  }
 }
 
 body header {

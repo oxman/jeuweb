@@ -25,7 +25,7 @@
       padding: 12px;
 
       h4 {
-        font-size:     24px;
+        font-size:     1.5em;
         margin-bottom: 8px;
 
         a {
@@ -49,10 +49,73 @@
       text-align:  center;
       width:       80px;
 
-      div {
+      .count {
         color:       #333;
-        font-size:   32px;
-        line-height: 52px;
+        font-size:   1.4em;
+        font-weight: bold;
+        line-height: 2em;
+      }
+    }
+  }
+}
+
+section#topic {
+  header {
+    background: #eee;
+    overflow: hidden;
+    height: 110px;
+    margin-bottom: 12px;
+
+    .avatar {
+      float: left;
+    }
+
+    .meta_data_and_title {
+      h2 {
+        font-size:   2em;
+        font-weight: bold;
+      }
+
+      float: left;
+      height: 100%;
+      padding: 12px;
+
+      .meta_data {
+        .author_and_date {
+          .author {
+            display: inline-block;
+            margin: 8px 0;
+          }
+          time {
+            display: inline-block;
+          }
+        }
+
+        .tags {
+          li {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .score {
+      color:       #777;
+      float:       right;
+      font-weight: bold;
+      height:      100%;
+      padding:     12px;
+      text-align:  center;
+      width:       70px;
+
+      a.selected {
+        color: orange;
+      }
+
+      .count {
+        color:       #333;
+        font-size:   1.4em;
+        line-height: 2em;
       }
     }
   }

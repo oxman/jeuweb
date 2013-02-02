@@ -1,43 +1,55 @@
-%h2= @topic.title
-%div= @topic.author.name
-%div= @topic.content
-%ul.tags
-  - @topic.tags.each do |tag|
-    %li= tag.name
+%section#topic
+  %header
+    .avatar
+    .meta_data_and_title
+      %h2= @topic.title
+      %div.meta_data
+        .author_and_date
+          %strong.author= @topic.author.name
+          %date{ datetime: @topic.created_at.to_time.iso8601, title: l(@topic.created_at) }
+            a posté  il y a
+            = time_ago_in_words(@topic.created_at)
 
-- if can?(:tag, @topic)
-  = form_tag tag_topic_path(@topic) do
-    = text_field_tag :tag_names, @topic.tag_names.join(' ')
-    = submit_tag 'Attribuer les tags'
+        %ul.tags
+          - @topic.tags.each do |tag|
+            = render tag
 
-.score
-  - voted = @topic.score_value == Score::POSITIVE
-  = link_to_if can?(:score, @topic), raw('&#x25B2'), score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
-  .count= @topic.score
-  - voted = @topic.score_value == Score::NEGATIVE
-  = link_to_if can?(:score, @topic), raw('&#x25BC'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+    .score
+      - voted = @topic.score_value == Score::POSITIVE
+      = link_to_if can?(:score, @topic), raw('&#x25B2'), score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+      .count= @topic.score
+      - voted = @topic.score_value == Score::NEGATIVE
+      = link_to_if can?(:score, @topic), raw('&#x25BC'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
-- if can?(:update, @topic)
-  %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
+  %div= @topic.content
 
-%div= pluralize(@replies.count, 'réponse')
+  - if can?(:tag, @topic)
+    = form_tag tag_topic_path(@topic) do
+      = text_field_tag :tag_names, @topic.tag_names.join(' ')
+      = submit_tag 'Attribuer les tags'
 
-- if can?(:create, Reply)
-  %div= link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
 
-.replies
-  - @replies.each do |reply|
-    %div
-      %div= reply.author.name
-      %div= reply.content
-      .score
-        - voted = reply.score_value == Score::POSITIVE
-        = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
-        .count= reply.score
-        - voted = reply.score_value == Score::NEGATIVE
-        = link_to_if can?(:score, reply), raw('&#x25BC'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+  - if can?(:update, @topic)
+    %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
 
-      - if can?(:update, reply)
-        %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+  %div= pluralize(@replies.count, 'réponse')
 
-= paginate(@replies)
+  - if can?(:create, Reply)
+    %div= link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
+
+  .replies
+    - @replies.each do |reply|
+      %div
+        %div= reply.author.name
+        %div= reply.content
+        .score
+          - voted = reply.score_value == Score::POSITIVE
+          = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+          .count= reply.score
+          - voted = reply.score_value == Score::NEGATIVE
+          = link_to_if can?(:score, reply), raw('&#x25BC'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+
+        - if can?(:update, reply)
+          %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+
+  = paginate(@replies)
