@@ -1,5 +1,5 @@
 %section#topic
-  %header
+  %header.topic
     .avatar
     .meta_data_and_title
       %h2= @topic.title
@@ -7,7 +7,7 @@
         .author_and_date
           %strong.author= @topic.author.name
           %date{ datetime: @topic.created_at.to_time.iso8601, title: l(@topic.created_at) }
-            a posté  il y a
+            il y a
             = time_ago_in_words(@topic.created_at)
 
         %ul.tags
@@ -21,35 +21,53 @@
       - voted = @topic.score_value == Score::NEGATIVE
       = link_to_if can?(:score, @topic), raw('&#x25BC'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
-  %div= @topic.content
+  .initial_message
+    = simple_format(@topic.content)
 
-  - if can?(:tag, @topic)
-    = form_tag tag_topic_path(@topic) do
-      = text_field_tag :tag_names, @topic.tag_names.join(' ')
-      = submit_tag 'Attribuer les tags'
+  .controls
+    .actions
+      - if can?(:update, @topic)
+        = link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
 
+      - if can?(:create, Reply)
+        = link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
 
-  - if can?(:update, @topic)
-    %div= link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
+    - if can?(:tag, @topic)
+      .change_tags
+        = form_tag tag_topic_path(@topic) do
+          = text_field_tag :tag_names, @topic.tag_names.join(' ')
+          = submit_tag 'Attribuer les tags'
 
-  %div= pluralize(@replies.count, 'réponse')
-
-  - if can?(:create, Reply)
-    %div= link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
 
   .replies
     - @replies.each do |reply|
-      %div
-        %div= reply.author.name
-        %div= reply.content
-        .score
-          - voted = reply.score_value == Score::POSITIVE
-          = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
-          .count= reply.score
-          - voted = reply.score_value == Score::NEGATIVE
-          = link_to_if can?(:score, reply), raw('&#x25BC'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+      .reply
+        .avatar_and_score
+          .avatar
+          .score
+            - voted = reply.score_value == Score::POSITIVE
+            = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+            .count= reply.score
+            - voted = reply.score_value == Score::NEGATIVE
+            = link_to_if can?(:score, reply), raw('&#x25BC'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
-        - if can?(:update, reply)
-          %div= link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+        .header_and_message
+          %header
+            .author_and_date
+              %strong.author= reply.author.name
+              %date{ datetime: reply.created_at.to_time.iso8601, title: l(reply.created_at) }
+                il y a
+                = time_ago_in_words(reply.created_at)
+
+            .actions
+              - if can?(:update, reply)
+                = link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+
+              - if can?(:create, Reply)
+                = link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
+
+          .message
+            = simple_format(reply.content)
+
 
   = paginate(@replies)

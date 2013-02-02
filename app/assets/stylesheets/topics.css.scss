@@ -60,11 +60,11 @@
 }
 
 section#topic {
-  header {
+  header.topic {
+    padding: 0;
     background: #eee;
     overflow: hidden;
     height: 110px;
-    margin-bottom: 12px;
 
     .avatar {
       float: left;
@@ -115,8 +115,95 @@ section#topic {
       .count {
         color:       #333;
         font-size:   1.4em;
-        line-height: 2em;
+        line-height: 1.6em;
       }
+    }
+  }
+
+  .initial_message {
+    padding: 12px;
+    background: #eee;
+  }
+
+  .controls {
+    padding: 12px;
+    background: #eee;
+    overflow: hidden;
+
+    .actions {
+      float: right;
+      a {
+        margin-right: 12px;
+      }
+
+      a:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .change_tags {
+      float: left;
+    }
+  }
+}
+
+.reply {
+  margin-top: 12px;
+  overflow: hidden;
+
+  .avatar_and_score {
+    width: 80px;
+    float: left;
+    text-align: center;
+
+    .score {
+      color:       #777;
+      float:       right;
+      font-weight: bold;
+      height:      100%;
+      padding:     12px;
+      text-align:  center;
+      width:       70px;
+
+      a.selected {
+        color: orange;
+      }
+
+      .count {
+        color:       #333;
+        font-size:   1em;
+        line-height: 1.6em;
+      }
+    }
+  }
+
+  .header_and_message {
+    min-height: 80px;
+    background: #eee;
+    margin-left: 80px;
+
+
+    header {
+      padding: 12px 12px 0;
+
+      .author_and_date {
+        display: inline-block;
+      }
+
+      .actions {
+        float: right;
+        a {
+          margin-right: 12px;
+        }
+
+        a:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .message {
+      padding: 12px;
     }
   }
 }

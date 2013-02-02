@@ -4,6 +4,18 @@ $navigationBoxWidth: 100px;
 body {
   min-width: 700px;
 
+  p {
+    padding: 8px 0;
+  }
+
+  p:first-child {
+    padding-top: 0;
+  }
+
+  p:last-child {
+    padding-bottom: 0;
+  }
+
   a {
     color:           steelblue;
     text-decoration: none;
@@ -14,7 +26,7 @@ body {
   }
 }
 
-body header {
+body header.main {
   height:   80px;
   overflow: auto;
 
