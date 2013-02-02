@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129183058) do
+ActiveRecord::Schema.define(:version => 20130202152129) do
 
   create_table "read_marks", :force => true do |t|
     t.integer  "user_id"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(:version => 20130129183058) do
     t.text     "content"
     t.integer  "author_id"
     t.integer  "topic_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "score",      :default => 0, :null => false
   end
 
   add_index "replies", ["author_id"], :name => "index_replies_on_author_id"

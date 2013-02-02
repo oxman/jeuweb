@@ -16,7 +16,7 @@ class Reply < ActiveRecord::Base
   end
 
 
-  def score
+  def computed_score
     scores.sum(:value)
   end
 
