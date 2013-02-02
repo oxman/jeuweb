@@ -75,4 +75,9 @@ class Topic < ActiveRecord::Base
   def score_value
     read_attribute(:score_value)
   end
+
+
+  def to_param
+    [ id, title.parameterize ].join('-')
+  end
 end

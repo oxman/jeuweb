@@ -28,7 +28,7 @@ $backgroundColor: #eee;
       padding: 12px;
 
       h4 {
-        font-size:     1em;
+        font-size:     1.5em;
         margin-bottom: 8px;
 
         a {
@@ -52,11 +52,167 @@ $backgroundColor: #eee;
       text-align:  center;
       width:       80px;
 
-      div {
+      .count {
         color:       #333;
-        font-size:   1em;
+        font-size:   1.4em;
+        font-weight: bold;
         line-height: 2em;
       }
     }
   }
+}
+
+section#topic {
+  header.topic {
+    padding: 0;
+    background: #eee;
+    overflow: hidden;
+    height: 110px;
+
+    .avatar {
+      float: left;
+    }
+
+    .meta_data_and_title {
+      h2 {
+        font-size:   2em;
+        font-weight: bold;
+      }
+
+      float: left;
+      height: 100%;
+      padding: 12px;
+
+      .meta_data {
+        .author_and_date {
+          .author {
+            display: inline-block;
+            margin: 8px 0;
+          }
+          time {
+            display: inline-block;
+          }
+        }
+
+        .tags {
+          li {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .score {
+      color:       #777;
+      float:       right;
+      font-weight: bold;
+      height:      100%;
+      padding:     12px;
+      text-align:  center;
+      width:       70px;
+
+      a.selected {
+        color: orange;
+      }
+
+      .count {
+        color:       #333;
+        font-size:   1.4em;
+        line-height: 1.6em;
+      }
+    }
+  }
+
+  .initial_message {
+    padding: 12px;
+    background: #eee;
+  }
+
+  .controls {
+    padding: 12px;
+    background: #eee;
+    overflow: hidden;
+
+    .actions {
+      float: right;
+      a {
+        margin-right: 12px;
+      }
+
+      a:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .change_tags {
+      float: left;
+    }
+  }
+}
+
+.reply {
+  margin-top: 12px;
+  overflow: hidden;
+
+  .avatar_and_score {
+    width: 80px;
+    float: left;
+    text-align: center;
+
+    .score {
+      color:       #777;
+      float:       right;
+      font-weight: bold;
+      height:      100%;
+      padding:     12px;
+      text-align:  center;
+      width:       70px;
+
+      a.selected {
+        color: orange;
+      }
+
+      .count {
+        color:       #333;
+        font-size:   1em;
+        line-height: 1.6em;
+      }
+    }
+  }
+
+  .header_and_message {
+    min-height: 80px;
+    background: #eee;
+    margin-left: 80px;
+
+
+    header {
+      padding: 12px 12px 0;
+
+      .author_and_date {
+        display: inline-block;
+      }
+
+      .actions {
+        float: right;
+        a {
+          margin-right: 12px;
+        }
+
+        a:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .message {
+      padding: 12px;
+    }
+  }
+}
+
+.topic-actions {
+  margin-top: 12px;
+  background: #eee;
+  padding: 12px;
 }

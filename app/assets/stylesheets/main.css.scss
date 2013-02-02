@@ -1,31 +1,41 @@
 // http://colorschemedesigner.com/#3p11TfvU8w0w0
 
 $navigationBoxWidth: 100px;
-
-
-$linkColor: #297D98;
+$linkColor: steelblue;
 $linkColorHover: #72A1B0;
 $backgroundColor: #eee;
 
 body {
   background: #fdfdfd;
-  font-size: 20px;
-}
-
-a {
-  color:           $linkColor;
-  text-decoration: none;
-}
-
-a:hover {
-  color: $linkColorHover;
-}
-
-body {
   min-width: 700px;
+
+  p {
+    padding: 8px 0;
+  }
+
+  p:first-child {
+    padding-top: 0;
+  }
+
+  p:last-child {
+    padding-bottom: 0;
+  }
+
+  a {
+    color:           $linkColor;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $linkColorHover;
+  }
+
+  strong {
+    font-weight: bold;
+  }
 }
 
-body header {
+body header.main {
   height:   80px;
   overflow: auto;
 
