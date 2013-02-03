@@ -1,3 +1,6 @@
+:css
+  #{Pygments.css}
+
 %section#topic
   %header.topic
     .avatar
@@ -22,7 +25,7 @@
       = link_to_if can?(:score, @topic), raw('&#x25BC'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
   .initial_message
-    = simple_format(@topic.content)
+    = prettify_message(@topic.content)
 
   .controls
     .actions
@@ -64,7 +67,7 @@
                 = link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
 
           .message
-            = simple_format(reply.content)
+            = prettify_message(reply.content)
 
 
   .topic-actions

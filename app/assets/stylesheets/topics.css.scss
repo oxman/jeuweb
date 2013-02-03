@@ -216,3 +216,13 @@ section#topic {
   background: #eee;
   padding: 12px;
 }
+
+
+.highlight {
+  padding: 12px;
+  border: 1px solid #ccc;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  background: #fff;
+}
