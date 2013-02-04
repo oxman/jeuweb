@@ -64,30 +64,34 @@ $backgroundColor: #eee;
 
 section#topic {
   header.topic {
-    padding: 0;
     background: #eee;
-    overflow: hidden;
-    height: 110px;
+    height:     110px;
+    overflow:   hidden;
+    padding:    0;
 
     .avatar {
-      float: left;
+      background: #ccc;
+      float:      left;
+      height:     80px;
+      margin:     12px 0 0 12px;
+      width:      80px;
     }
 
     .meta_data_and_title {
+      float:   left;
+      height:  100%;
+      padding: 12px;
+
       h2 {
         font-size:   2em;
         font-weight: bold;
       }
 
-      float: left;
-      height: 100%;
-      padding: 12px;
-
       .meta_data {
         .author_and_date {
           .author {
             display: inline-block;
-            margin: 8px 0;
+            margin:  8px 0;
           }
           time {
             display: inline-block;
@@ -129,9 +133,9 @@ section#topic {
   }
 
   .controls {
-    padding: 12px;
     background: #eee;
-    overflow: hidden;
+    overflow:   hidden;
+    padding:    12px;
 
     .actions {
       float: right;
@@ -155,18 +159,25 @@ section#topic {
   overflow: hidden;
 
   .avatar_and_score {
-    width: 80px;
-    float: left;
+    float:      left;
     text-align: center;
+    width:      80px;
+
+    .avatar {
+      background: #ccc;
+      text-align: left;
+      height:     60px;
+      width:      60px;
+    }
 
     .score {
       color:       #777;
-      float:       right;
+      float:       left;
       font-weight: bold;
       height:      100%;
       padding:     12px;
       text-align:  center;
-      width:       70px;
+      width:       60px;
 
       a.selected {
         color: orange;
@@ -181,9 +192,9 @@ section#topic {
   }
 
   .header_and_message {
-    min-height: 80px;
-    background: #eee;
-    margin-left: 80px;
+    background:  #eee;
+    margin-left: 72px;
+    min-height:  80px;
 
 
     header {
@@ -195,6 +206,7 @@ section#topic {
 
       .actions {
         float: right;
+
         a {
           margin-right: 12px;
         }
@@ -212,19 +224,19 @@ section#topic {
 }
 
 .topic-actions {
-  margin-top: 12px;
   background: #eee;
-  padding: 12px;
+  margin-top: 12px;
+  padding:    12px;
 }
 
 
 .highlight {
-  padding: 12px;
-  border: 1px solid #ccc;
-  overflow-x: auto;
-  overflow-y: hidden;
+  background:  #fff;
+  border:      1px solid #ccc;
   font-family: 'Courier New', Courier, monospace;
-  background: #fff;
+  overflow-x:   auto;
+  overflow-y:   hidden;
+  padding:      12px;
 }
 
 

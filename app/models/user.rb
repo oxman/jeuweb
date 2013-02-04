@@ -1,3 +1,6 @@
+require 'digest/md5'
+
+
 class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 
@@ -36,6 +39,14 @@ class User < ActiveRecord::Base
       score = scorable.scores.where(user_id: id).first_or_initialize
       score.update_attributes!(value: value)
       scorable.update_attributes!(score: scorable.computed_score)
+    end
+  end
+
+
+  def avatar_url
+    if email
+      hash = Digest::MD5.hexdigest(email.downcase)
+      "http://www.gravatar.com/avatar/#{hash}?s=80"
     end
   end
 end

@@ -3,6 +3,8 @@
 %section#topic
   %header.topic
     .avatar
+      = image_tag(@topic.author.avatar_url, size: '80x80')
+
     .meta_data_and_title
       %h2= @topic.title
       %div.meta_data
@@ -46,6 +48,8 @@
       .reply
         .avatar_and_score
           .avatar
+            = image_tag(reply.author.avatar_url, size: '60x60')
+
           .score
             - voted = reply.score_value == Score::POSITIVE
             = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
