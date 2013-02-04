@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   has_many :topics, foreign_key: 'author_id'
   has_many :read_marks
 
+  attr_reader :age
+
+  FORBIDDEN_NAMES = %w( new edit admin )
+  validates :name, presence: true, uniqueness: true, exclusion: FORBIDDEN_NAMES
+  validates :email, uniqueness: true
+
 
   def unread_topics
     Topic

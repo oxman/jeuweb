@@ -1,0 +1,26 @@
+%h2 Inscription
+
+= form_for @user do |f|
+  %p
+    = f.label :name
+    = f.text_field :name
+
+  %p
+    = f.label :email
+    = f.email_field :email
+
+  %p
+    = f.label :password
+    = f.password_field :password
+
+  %p
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+
+
+  %p.age
+    = f.label :age
+    = f.text_field :age
+
+  %p
+    = f.submit
