@@ -1,5 +1,6 @@
 $itemHeight: 80px;
 $backgroundColor: #eee;
+$avatarBorderRadius: 10%;
 
 
 #topics {
@@ -11,15 +12,21 @@ $backgroundColor: #eee;
 
   .topic {
     background:    $backgroundColor;
+    height:        $itemHeight;
     margin-bottom: 12px;
     overflow:      auto;
+    overflow:      hidden;
     width:         100%;
 
     .avatar {
       float:  left;
-      width:  0px;
-      height: 100%;
-      background: red;
+      width:  60px;
+      height: $itemHeight;
+      margin: 10px 0 10px 10px;
+
+      img {
+        border-radius: $avatarBorderRadius;
+      }
     }
 
     .meta_data {
@@ -70,11 +77,14 @@ section#topic {
     padding:    0;
 
     .avatar {
-      background: #ccc;
-      float:      left;
-      height:     80px;
-      margin:     12px 0 0 12px;
-      width:      80px;
+      float:  left;
+      height: 80px;
+      margin: 12px 0 0 12px;
+      width:  80px;
+
+      img {
+        border-radius: $avatarBorderRadius;
+      }
     }
 
     .meta_data_and_title {
@@ -164,10 +174,13 @@ section#topic {
     width:      80px;
 
     .avatar {
-      background: #ccc;
       text-align: left;
       height:     60px;
       width:      60px;
+
+      img {
+        border-radius: $avatarBorderRadius;
+      }
     }
 
     .score {

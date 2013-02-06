@@ -2,8 +2,7 @@
 
 %section#topic
   %header.topic
-    .avatar
-      = image_tag(@topic.author.avatar_url, size: '80x80')
+    = avatar(@topic.author, 80)
 
     .meta_data_and_title
       %h2= @topic.title
@@ -47,8 +46,7 @@
     - @replies.each do |reply|
       .reply
         .avatar_and_score
-          .avatar
-            = image_tag(reply.author.avatar_url, size: '60x60')
+          = avatar(reply.author, 60)
 
           .score
             - voted = reply.score_value == Score::POSITIVE

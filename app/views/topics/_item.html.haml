@@ -1,5 +1,5 @@
 %li.topic{ class: topic.unread? && 'unread'  }
-  .avatar
+  = avatar(topic.author, 60)
 
   .meta_data
     %h4= link_to topic.title, topic
