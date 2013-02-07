@@ -73,6 +73,14 @@
 
   .topic-actions
     - if can?(:create, Reply)
-      = link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
+      = form_for [ @topic, Reply.new ] do |f|
+        %div.content
+          = f.label :content
+          %br
+          = f.text_area :content
+
+        %div
+          = f.submit "Répondre"
+
 
   = paginate(@replies)
