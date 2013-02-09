@@ -20,4 +20,13 @@ class TopicTest < ActiveSupport::TestCase
     topics = Topic.with_score_values_for(nil)
     assert_equal nil, topics[0].score_value
   end
+
+
+  def test_filter_private_messages
+    public_topic  = FactoryGirl.create(:topic)
+    private_topic = FactoryGirl.create(:private_topic)
+
+    assert_equal [ public_topic ], Topic.public
+    assert_equal [ private_topic ], Topic.private
+  end
 end

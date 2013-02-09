@@ -14,6 +14,16 @@ class Topic < ActiveRecord::Base
   paginates_per 50
 
 
+  def self.public
+    where(private: false)
+  end
+
+
+  def self.private
+    where(private: true)
+  end
+
+
   def self.with_tags(tags)
     relation = scoped
     tags.each_with_index do |tag, index|
