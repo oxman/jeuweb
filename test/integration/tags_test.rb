@@ -19,7 +19,7 @@ class TagsTest < ActionDispatch::IntegrationTest
     visit(topic_path(topic))
     assert find('.tags').has_content?('Foo'), 'Foo tag should be visible'
     fill_in 'tag_names', with: 'Bar'
-    find('[type=submit]').click
+    find('.change_tags input[type=submit]').click
     assert find('.tags').has_content?('Bar'), 'Bar tag should be visible'
     assert find('.tags').has_no_content?('Foo'), 'Foo tag should not be visible'
   end
