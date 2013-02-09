@@ -19,8 +19,9 @@ class Topic < ActiveRecord::Base
   end
 
 
-  def self.private
-    where(private: true)
+  def self.allowed_for(user)
+    allowed_topic_ids = user.participations.select(:topic_id)
+    where(private: true, id: allowed_topic_ids)
   end
 
 
@@ -44,6 +45,11 @@ class Topic < ActiveRecord::Base
     return scoped unless user
     select('topics.*, scores.value AS score_value')
     .joins("LEFT JOIN scores ON scores.scorable_type = 'Topic' AND scores.scorable_id = topics.id AND scores.user_id = %d" % [ user.id ])
+  end
+
+
+  def allow(user)
+    user.participations.where(topic_id: id).first_or_create!
   end
 
 

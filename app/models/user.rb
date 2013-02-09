@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :topics, foreign_key: 'author_id'
   has_many :read_marks
+  has_many :participations
 
   attr_reader :age
 
