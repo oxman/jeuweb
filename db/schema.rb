@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209142639) do
+ActiveRecord::Schema.define(:version => 20130210100103) do
 
   create_table "participations", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "from_reply_id"
   end
 
   add_index "participations", ["topic_id"], :name => "index_participations_on_topic_id"

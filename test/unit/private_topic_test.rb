@@ -34,4 +34,27 @@ class PrivateTopicTest < ActiveSupport::TestCase
 
     assert_equal [ topic ], Topic.allowed_for(user)
   end
+
+
+  def test_user_allowed_for_all_replies
+    user    = FactoryGirl.create(:user)
+    topic   = FactoryGirl.create(:private_topic)
+    reply_1 = FactoryGirl.create(:reply, topic: topic)
+    reply_2 = FactoryGirl.create(:reply, topic: topic)
+    topic.allow(user)
+
+    assert_equal [ reply_1, reply_2 ], topic.allowed_replies_for(user)
+  end
+
+
+  def test_user_only_allowed_for_some_replies
+    user    = FactoryGirl.create(:user)
+    topic   = FactoryGirl.create(:private_topic)
+    reply_1 = FactoryGirl.create(:reply, topic: topic)
+    reply_2 = FactoryGirl.create(:reply, topic: topic)
+    reply_3 = FactoryGirl.create(:reply, topic: topic)
+    topic.allow(user, reply_2)
+
+    assert_equal [ reply_2, reply_3 ], topic.allowed_replies_for(user)
+  end
 end

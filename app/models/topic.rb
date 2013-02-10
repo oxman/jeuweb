@@ -48,8 +48,18 @@ class Topic < ActiveRecord::Base
   end
 
 
-  def allow(user)
-    user.participations.where(topic_id: id).first_or_create!
+  def allow(user, from_reply = nil)
+    participation = user.participations.where(topic_id: id).first_or_initialize
+    participation.update_attributes!(from_reply_id: from_reply && from_reply.id)
+  end
+
+
+  def allowed_replies_for(user)
+    if from_reply_id = user.participations.where(topic_id: id).pluck(:from_reply_id)[0]
+      replies.where('? <= id', from_reply_id)
+    else
+      replies.scoped
+    end
   end
 
 
