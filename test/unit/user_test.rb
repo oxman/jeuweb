@@ -48,6 +48,30 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
+  def test_user_can_reply_to_public_topic
+    topic   = FactoryGirl.create(:topic)
+    ability = Ability.new(FactoryGirl.create(:user))
+    assert ability.can?(:reply, topic), "User should be able to reply to a public topic"
+  end
+
+
+  def test_user_participating_to_a_private_topic_can_reply
+    user    = FactoryGirl.create(:user)
+    topic   = FactoryGirl.create(:private_topic)
+    ability = Ability.new(user)
+    topic.allow(user)
+    assert ability.can?(:reply, topic), "User participating to a private topic can reply"
+  end
+
+
+  def test_user_not_participating_to_a_private_topic_cant_reply
+    user    = FactoryGirl.create(:user)
+    topic   = FactoryGirl.create(:private_topic)
+    ability = Ability.new(user)
+    assert !ability.can?(:reply, topic), "User not participating to a private topic can't reply"
+  end
+
+
   def test_trusted_user_can_tag_other_users_topics
     topic   = FactoryGirl.create(:topic)
     ability = Ability.new(FactoryGirl.create(:user, trusted: true))

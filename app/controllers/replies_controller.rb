@@ -1,14 +1,14 @@
 class RepliesController < ApplicationController
   def new
-    authorize! :create, Reply
     @topic = Topic.find(params[:topic_id])
+    authorize! :reply, @topic
     @reply = @topic.replies.build
   end
 
 
   def create
-    authorize! :create, Reply
     topic = Topic.find(params[:topic_id])
+    authorize! :reply, topic
 
     Topic.transaction do
       reply = topic.replies.create!(reply_params.merge(author: current_user))

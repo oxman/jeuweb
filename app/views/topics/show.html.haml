@@ -32,7 +32,7 @@
       - if can?(:update, @topic)
         = link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
 
-      - if can?(:create, Reply)
+      - if can?(:reply, @topic)
         = link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
 
     - if can?(:tag, @topic)
@@ -72,7 +72,7 @@
 
 
   .topic-actions
-    - if can?(:create, Reply)
+    - if can?(:reply, @topic)
       = form_for [ @topic, Reply.new ] do |f|
         %div.content
           = f.label :content
