@@ -1,0 +1,12 @@
+%li.topic{ class: topic.unread? && 'unread'  }
+  = avatar(topic.author, 60)
+
+  .meta_data
+    %h4= link_to topic.title, private_topic_path(topic)
+    %ul.participants
+      = topic.participant_names.join(', ')
+
+  .replies
+    réponses
+    .count= topic.replies_count
+

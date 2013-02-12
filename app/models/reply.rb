@@ -26,4 +26,19 @@ class Reply < ActiveRecord::Base
   def score_value
     read_attribute(:score_value)
   end
+
+
+  module TopicRepliesExtension
+    def add(params)
+      Topic.transaction do
+        topic = proxy_association.owner
+        reply = build(params)
+        if reply.valid?
+          topic.increment(:replies_count)
+          topic.update_attributes(last_activity_at: Time.current, last_reply: reply, last_reply_author: reply.author)
+        end
+        reply
+      end
+    end
+  end
 end

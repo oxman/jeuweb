@@ -8,23 +8,16 @@ class Topic < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
 
-  has_many :replies do
-    def add(params)
-      Topic.transaction do
-        topic = proxy_association.owner
-        reply = build(params)
-        if reply.valid?
-          topic.increment(:replies_count)
-          topic.update_attributes(last_activity_at: Time.current, last_reply: reply, last_reply_author: reply.author)
-        end
-        reply
-      end
-    end
-  end
+  has_many :replies, extend: Reply::TopicRepliesExtension
 
   has_many :scores, as: :scorable
 
+  has_many :participations
+  has_many :participants, through: :participations, source: :user
+
   paginates_per 50
+
+  validates_presence_of :title, :content
 
 
   def self.public
@@ -73,6 +66,16 @@ class Topic < ActiveRecord::Base
     else
       replies.scoped
     end
+  end
+
+
+  def participant_names
+    participants.pluck(:name)
+  end
+
+
+  def participant_names=(participant_names)
+    self.participants = User.where(name: participant_names)
   end
 
 

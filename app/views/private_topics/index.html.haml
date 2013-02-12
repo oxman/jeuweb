@@ -1,0 +1,8 @@
+%ul#topics
+  - @topics.each do |topic|
+    = render 'private_topics/item', topic: topic
+
+%div= paginate(@topics)
+
+- if can?(:create, Topic)
+  %div= link_to 'Créer une discussion privée', new_private_topic_path, class: 'create_topic'

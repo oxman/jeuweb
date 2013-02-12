@@ -9,13 +9,7 @@ class RepliesController < ApplicationController
   def create
     topic = Topic.find(params[:topic_id])
     authorize! :reply, topic
-
-    Topic.transaction do
-      reply = topic.replies.create!(reply_params.merge(author: current_user))
-      topic.increment(:replies_count)
-      topic.update_attributes!(last_reply: reply, last_reply_author: current_user, last_activity_at: Time.current)
-    end
-
+    topic.replies.add(author: current_user, content: params[:reply][:content])
     replies = topic.replies.page(1).order('created_at ASC')
     redirect_to(topic_path(topic, page: replies.num_pages))
   end
