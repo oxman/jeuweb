@@ -44,4 +44,19 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal user, topic.last_reply_author
     assert_equal user, reply.author
   end
+
+
+  def test_add_reply_validation_fail_doesnt_change_anything
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic)
+    reply = topic.replies.add(author: user)
+
+    assert_equal false, reply.valid?
+    assert_equal nil, topic.last_activity_at
+    assert_equal 0, topic.replies_count
+    assert_equal 0, topic.replies.count
+    assert_equal nil, topic.last_reply
+    assert_equal nil, topic.last_reply_author
+    assert_equal user, reply.author
+  end
 end

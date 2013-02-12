@@ -8,6 +8,8 @@ class Reply < ActiveRecord::Base
 
   paginates_per 50
 
+  validates_presence_of :content, :author
+
 
   def self.with_score_values_for(user)
     return scoped unless user

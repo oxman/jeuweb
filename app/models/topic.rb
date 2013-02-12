@@ -12,9 +12,11 @@ class Topic < ActiveRecord::Base
     def add(params)
       Topic.transaction do
         topic = proxy_association.owner
-        reply = create!(params)
-        topic.increment(:replies_count)
-        topic.update_attributes!(last_activity_at: Time.current, last_reply: reply, last_reply_author: reply.author)
+        reply = build(params)
+        if reply.valid?
+          topic.increment(:replies_count)
+          topic.update_attributes(last_activity_at: Time.current, last_reply: reply, last_reply_author: reply.author)
+        end
         reply
       end
     end
