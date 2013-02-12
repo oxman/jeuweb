@@ -29,4 +29,19 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal [ public_topic ], Topic.public
     assert_equal [ private_topic ], Topic.private
   end
+
+
+  def test_add_reply_to_topic
+    Timecop.freeze
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic)
+    reply = topic.replies.add(author: user, content: "Foo")
+
+    assert_equal Time.current, topic.last_activity_at
+    assert_equal 1, topic.replies_count
+    assert_equal 1, topic.replies.count
+    assert_equal reply, topic.last_reply
+    assert_equal user, topic.last_reply_author
+    assert_equal user, reply.author
+  end
 end

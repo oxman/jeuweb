@@ -8,7 +8,18 @@ class Topic < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
 
-  has_many :replies
+  has_many :replies do
+    def add(params)
+      Topic.transaction do
+        topic = proxy_association.owner
+        reply = create!(params)
+        topic.increment(:replies_count)
+        topic.update_attributes!(last_activity_at: Time.current, last_reply: reply, last_reply_author: reply.author)
+        reply
+      end
+    end
+  end
+
   has_many :scores, as: :scorable
 
   paginates_per 50
