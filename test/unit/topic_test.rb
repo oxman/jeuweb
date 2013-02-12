@@ -27,7 +27,6 @@ class TopicTest < ActiveSupport::TestCase
     private_topic = FactoryGirl.create(:private_topic)
 
     assert_equal [ public_topic ], Topic.public
-    assert_equal [ private_topic ], Topic.private
   end
 
 
