@@ -33,6 +33,8 @@ Jeuweb::Application.routes.draw do
   get  '/private_discussions/:id/edit', to: 'private_topics#edit',   as: 'edit_private_topic'
   put  '/private_discussions/:id',      to: 'private_topics#update', as: 'private_topic'
 
+  post '/private_discussions/:topic_id/participations', to: 'private_topics#create_participation', as: 'private_topic_participations'
+
   get  '/private_discussions/:topic_id/replies/:id/edit',  to: 'private_replies#edit',   as: 'edit_private_topic_reply'
   post '/private_discussions/:topic_id/replies/:id/score', to: 'private_replies#score',  as: 'score_private_topic_reply'
   put  '/private_discussions/:topic_id/replies/:id',       to: 'private_replies#update', as: 'private_topic_reply'

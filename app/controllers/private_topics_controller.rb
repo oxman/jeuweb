@@ -39,4 +39,13 @@ class PrivateTopicsController < ApplicationController
     topic.update_attributes!(topic_params)
     redirect_to(private_topic_path(topic))
   end
+
+
+  def create_participation
+    topic = Topic.find(params[:topic_id])
+    authorize! :update, topic
+    participant_names = params[:participant_names].gsub(/\s+/, '').split(',')
+    User.where(name: participant_names).each { |user| topic.allow(user) }
+    redirect_to(private_topic_path(topic))
+  end
 end

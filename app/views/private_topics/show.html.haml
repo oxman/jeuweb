@@ -1,6 +1,14 @@
 - content_for(:page_title, @topic.title)
 
 %section#topic
+  %header.participants
+    = @topic.participant_names.join(', ')
+    = form_tag private_topic_participations_path(@topic) do
+      = text_field_tag :participant_names
+      = submit_tag 'Ajouter des participants'
+
+
+
   %header.topic
     = avatar(@topic.author, 80)
 

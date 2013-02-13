@@ -3,7 +3,7 @@
 
   .meta_data
     %h4= link_to topic.title, private_topic_path(topic)
-    %ul.participants
+    .participants
       = topic.participant_names.join(', ')
 
   .replies
