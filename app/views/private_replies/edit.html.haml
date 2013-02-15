@@ -3,7 +3,7 @@
   %q= @topic.title
 
 = form_for @reply, url: private_topic_reply_path(@topic, @reply) do |f|
-  %div
+  %div.autosized
     = f.label :content
     %br
     = f.text_area :content
