@@ -47,11 +47,14 @@
           %nav
             %ul
               - if can?(:create, Topic)
-                %li= link_to 'Nouveau sujet', new_topic_path
+                %li= link_to 'Créer une discussion', new_topic_path
+
               %li= link_to 'Tous les sujets', root_path
-              %li= link_to 'Messages privées', private_topics_path
-              %li= link_to 'Mes recherches', nil
-              %li= link_to 'Mes favoris', nil
+
+              - if current_user
+                %li= link_to 'Messages privées', private_topics_path
+                %li= link_to 'Mes recherches', nil
+                %li= link_to 'Mes favoris', nil
 
             .separator
 
