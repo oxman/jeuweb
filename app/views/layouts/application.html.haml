@@ -26,9 +26,9 @@
             - if current_user
               = current_user.avatar(50)
 
-              .name
-                %strong
-                  %a{ href: '' }= current_user.name
+              %nav
+                %strong= link_to(current_user.name, nil)
+
                 %a{ href: '' } Editer mon profil
 
               .sign_out
@@ -36,11 +36,16 @@
                   %i.icon-off
 
             - else
-              %div
-                %strong Invité
+              .guest_avatar.avatar
+                %i.icon-user
 
-              %div= link_to('Connexion', sign_in_path)
-              %div= link_to('Créer un compte', sign_up_path)
+
+              %nav
+                %strong
+                  %span Invité
+
+                %div= link_to('Connexion', sign_in_path)
+                %div= link_to('Créer un compte', sign_up_path)
 
           .separator
 

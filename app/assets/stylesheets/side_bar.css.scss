@@ -1,5 +1,6 @@
 $majorLinkColor: #374a58;
 $minorLinkColor: #4ba6dd;
+$mediumGrey:     #abb3bd;
 
 
 #side_bar {
@@ -11,7 +12,6 @@ $minorLinkColor: #4ba6dd;
   }
 
   #user_box {
-    height:   50px;
     margin:   40px 30px 30px 28px;
     overflow: hidden;
     width:    232px;
@@ -20,14 +20,24 @@ $minorLinkColor: #4ba6dd;
       float: left;
     }
 
-    .name {
+    .guest_avatar {
+      color: $mediumGrey;
+      height: 50px;
+      text-align: center;
+      width:  50px;
+
+      i {
+        font-size: 50px;
+      }
+    }
+
+    nav {
       float:   left;
-      height:  50px;
       padding: 0 0 0 10px;
       width:   157px;
 
       strong {
-        a {
+        a, span {
           color:     $majorLinkColor;
           font-size: 18px;
         }
@@ -58,7 +68,7 @@ $minorLinkColor: #4ba6dd;
       height: 50px;
 
       a {
-        background:      #a9b0b8;
+        background:      $mediumGrey;
         border-radius:   2px;
         color:           #fff;
         display:         block;
@@ -72,8 +82,7 @@ $minorLinkColor: #4ba6dd;
       }
 
       a:hover {
-        background: #999;
-        color:      #eee;
+        background: $minorLinkColor;
       }
     }
   }
