@@ -1,0 +1,97 @@
+$majorLinkColor: #374a58;
+$minorLinkColor: #4ba6dd;
+
+
+#side_bar {
+  width: 290px;
+  float: left;
+
+  .separator {
+    border-top: 3px solid #e6eaed;
+  }
+
+  #user_box {
+    height:   50px;
+    margin:   40px 30px 30px 28px;
+    overflow: hidden;
+    width:    232px;
+
+    .avatar {
+      float: left;
+    }
+
+    .name {
+      float:   left;
+      height:  50px;
+      padding: 0 0 0 10px;
+      width:   157px;
+
+      strong a {
+        color:     $majorLinkColor;
+        font-size: 18px;
+      }
+
+      a {
+        color:           $minorLinkColor;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      strong, a {
+        display:     block;
+        height:      25px;
+        line-height: 25px;
+      }
+    }
+
+    .sign_out {
+      height: 50px;
+
+      a {
+        background:      #a9b0b8;
+        border-radius:   2px;
+        color:           #fff;
+        display:         block;
+        float:           right;
+        height:          25px;
+        line-height:     25px;
+        margin:          10px 0 0 0;
+        text-align:      center;
+        text-decoration: none;
+        width:           25px;
+      }
+
+      a:hover {
+        background: #999;
+        color:      #eee;
+      }
+    }
+  }
+
+  nav {
+    ul {
+      li {
+        a {
+          color:           #888;
+          display:         block;
+          height:          50px;
+          line-height:     50px;
+          text-decoration: none;
+          text-indent:     50px;
+        }
+      }
+
+      li.current, li:hover {
+        background: #adda4b;
+
+        a {
+          border-right: 3px solid #93c42d;
+          color:        #fff;
+        }
+      }
+    }
+  }
+}

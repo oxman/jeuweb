@@ -11,35 +11,58 @@
     = csrf_meta_tags
 
   %body
-    %header.main
-      %h1= link_to 'JeuWeb', root_path
-
-      %section#current_user
-        - if current_user
-          %div
-            %strong= current_user.name
-
-          %div= link_to('Déconnexion', sign_out_path, method: :delete)
-
-        - else
-          %div
-            %strong Invité
-
-          %div= link_to('Connexion', sign_in_path)
-          %div= link_to('Créer un compte', sign_up_path)
-
-    #container
-      %nav#main
-        %ul
-          %li= link_to 'Discussions', root_path
-          %li= link_to 'Messagerie', private_topics_path
-
-        %ul
-          %li= link_to 'JeuWeb', topics_search_path(tags: 'JeuWeb')
-          %li= link_to "Demandes d'aide", topics_search_path(tags: 'Question')
-          %li= link_to 'Débats', topics_search_path(tags: 'Débat')
-          %li= link_to 'Projets', topics_search_path(tags: 'Projet')
+    #main_header
+      %header
+        %h1
+          = link_to root_path do
+            %span JeuWeb
 
 
-      %section#content
-        = yield
+    #wide_container
+      #container
+        %section#side_bar
+          %section#user_box
+            - if current_user
+              = avatar(current_user, 50)
+
+              .name
+                %strong
+                  %a{ href: '' }= current_user.name
+                %a{ href: '' } Editer mon profil
+
+              .sign_out
+                = link_to('×', sign_out_path, method: :delete)
+
+            - else
+              %div
+                %strong Invité
+
+              %div= link_to('Connexion', sign_in_path)
+              %div= link_to('Créer un compte', sign_up_path)
+
+          .separator
+
+          %nav
+            %ul
+              - if can?(:create, Topic)
+                %li= link_to 'Nouveau sujet', new_topic_path
+              %li= link_to 'Tous les sujets', root_path
+              %li= link_to 'Messages privées', private_topics_path
+              %li= link_to 'Mes recherches', nil
+              %li= link_to 'Mes favoris', nil
+
+            .separator
+
+            %ul
+              %li= link_to 'JeuWeb', topics_search_path(tags: 'JeuWeb')
+              %li= link_to "Demandes d'aide", topics_search_path(tags: 'Question')
+              %li= link_to 'Débats', topics_search_path(tags: 'Débat')
+              %li= link_to 'Projets', topics_search_path(tags: 'Projet')
+
+            .separator
+
+
+        %section#content
+          = yield
+
+      #grey_box

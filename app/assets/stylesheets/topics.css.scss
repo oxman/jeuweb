@@ -1,0 +1,81 @@
+$majorLinkColor: #374a58;
+$minorLinkColor: #4ba6dd;
+
+
+#topics {
+  .topic {
+    a {
+      color:           $minorLinkColor;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    background:    #fbfbfb;
+    color:         #888;
+    margin:        10px 0;
+    height:        65px;
+    width:         642px;
+    border-top:    1px solid #f4f4f4;
+    border-left:   1px solid #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+
+    .avatar {
+      float: left;
+      width: 65px;
+
+      img {
+        margin: 6px;
+      }
+    }
+
+    .title_and_replies_and_tags {
+      width: 535px;
+      float: left;
+
+      .title {
+        h4 {
+          display:   inline-block;
+          font-weight: bold;
+          height: 35px;
+          font-size: 22px;
+          line-height: 35px;
+
+          a {
+            color: $majorLinkColor;
+          }
+        }
+      }
+
+      .replies_and_tags {
+        height: 30px;
+
+        .replies {
+          width:   100px;
+          display: inline-block;
+        }
+
+        .tags {
+          display: inline-block;
+        }
+      }
+    }
+
+    .score {
+      background:  #b4e152;
+      color:       #fff;
+      float:       left;
+      font-size:   18px;
+      font-weight: bold;
+      line-height: 64px;
+      text-align:  center;
+      width:       40px;
+    }
+  }
+
+  .topic:first-child {
+    margin: 0 0 10px;
+  }
+}

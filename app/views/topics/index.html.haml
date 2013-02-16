@@ -3,6 +3,3 @@
     = render 'topics/item', topic: topic
 
 %div= paginate(@topics)
-
-- if can?(:create, Topic)
-  %div= link_to 'Créer une discussion', new_topic_path, class: 'create_topic'

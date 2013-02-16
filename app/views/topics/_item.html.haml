@@ -1,17 +1,19 @@
 %li.topic{ class: topic.unread? && 'unread'  }
-  = avatar(topic.author, 60)
+  = avatar(topic.author, 50)
 
-  .meta_data
-    %h4= link_to topic.title, topic
-    %ul.tags
-      - topic.tags.each do |tag|
-        = render tag, display_topics_count: false
+  .title_and_replies_and_tags
+    .title
+      %h4= link_to(topic.title, topic)
+      par
+      %span.author= link_to(topic.author.name, nil)
+
+    .replies_and_tags
+      .replies
+        %span.count= topic.replies_count
+        réponses
+
+      .tags
+        != topic.tags.map { |tag| link_to(tag.name, nil) }.join(', ')
 
   .score
-    note
     .count= topic.score
-
-  .replies
-    réponses
-    .count= topic.replies_count
-
