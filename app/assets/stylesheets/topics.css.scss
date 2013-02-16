@@ -1,8 +1,15 @@
 $majorLinkColor: #374a58;
 $minorLinkColor: #4ba6dd;
+$lightGreen:     #b4e152;
 
 
 #topics {
+  .topic.unread {
+    h4 {
+      font-weight: bold;
+    }
+  }
+
   .topic {
     a {
       color:           $minorLinkColor;
@@ -32,39 +39,62 @@ $minorLinkColor: #4ba6dd;
     }
 
     .title_and_replies_and_tags {
-      width: 535px;
+      width: 536px;
       float: left;
 
       .title {
         h4 {
-          display:   inline-block;
-          font-weight: bold;
-          height: 35px;
-          font-size: 22px;
+          font-size:   22px;
+          height:      35px;
           line-height: 35px;
 
+          i {
+            font-size: 20px;
+          }
+
           a {
-            color: $majorLinkColor;
+            color:   $majorLinkColor;
+            display: inline-block;
+          }
+
+          a:hover {
+            color:           $minorLinkColor;
+            text-decoration: none;
           }
         }
       }
 
-      .replies_and_tags {
-        height: 30px;
+      .replies_and_author_and_tags {
+        height:      30px;
+        line-height: 26px;
 
-        .replies {
-          width:   100px;
+        i {
+          font-size: 13px;
+          color:     #999;
+        }
+
+        .author {
           display: inline-block;
         }
 
-        .tags {
+        .replies {
           display: inline-block;
+          width:   120px;
+        }
+
+        .tags {
+          float:        right;
+          margin-right: 12px;
+
+          i {
+            margin-right: 2px;
+          }
         }
       }
     }
 
     .score {
-      background:  #b4e152;
+      background:  $lightGreen;
       color:       #fff;
       float:       left;
       font-size:   18px;

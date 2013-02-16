@@ -7,6 +7,7 @@
       = content_for?(:page_title) ? yield(:page_title) : 'Crée ton jeu par navigateur'
 
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Abel'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
@@ -31,7 +32,8 @@
                 %a{ href: '' } Editer mon profil
 
               .sign_out
-                = link_to('×', sign_out_path, method: :delete)
+                = link_to(sign_out_path, method: :delete) do
+                  %i.icon-off
 
             - else
               %div
