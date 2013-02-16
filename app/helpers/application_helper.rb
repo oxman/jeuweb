@@ -25,7 +25,7 @@ module ApplicationHelper
 
 
   def avatar(user, size)
-    content_tag :div, class: 'avatar' do
+    content_tag :div, class: 'avatar', title: user.name do
       image_tag(user.avatar_url, size: "#{size}x#{size}")
     end
   end

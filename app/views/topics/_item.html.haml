@@ -4,10 +4,8 @@
   .title_and_replies_and_tags
     .title
       %h4
-        = link_to(topic) do
-          - if topic.unread?
-            %i.icon-asterisk
-          = topic.title
+        = link_to(topic.title, topic)
+
 
     .replies_and_author_and_tags
       .replies
@@ -15,13 +13,8 @@
         %span.count= topic.replies_count
         réponses
 
-      .author
-        %i.icon-user
-        = link_to(topic.author.name, nil)
-
       .tags
-        %i.icon-tags
-        != topic.tags.map { |tag| link_to(tag.name, nil) }.join(', ')
+        != topic.tags.map { |tag| link_to(tag.name, nil) }.join(' ')
 
   .score
     .count= topic.score

@@ -1,12 +1,17 @@
 $majorLinkColor: #374a58;
 $minorLinkColor: #4ba6dd;
 $lightGreen:     #b4e152;
+$mediumGrey:     #abb3bd;
 
 
 #topics {
   .topic.unread {
     h4 {
       font-weight: bold;
+    }
+
+    .score {
+      background: $lightGreen;
     }
   }
 
@@ -21,13 +26,13 @@ $lightGreen:     #b4e152;
     }
 
     background:    #fbfbfb;
-    color:         #888;
-    margin:        10px 0;
-    height:        65px;
-    width:         642px;
-    border-top:    1px solid #f4f4f4;
-    border-left:   1px solid #f5f5f5;
     border-bottom: 1px solid #e5e5e5;
+    border-left:   1px solid #f5f5f5;
+    border-top:    1px solid #f4f4f4;
+    color:         #888;
+    height:        65px;
+    margin:        10px 0;
+    width:         642px;
 
     .avatar {
       float: left;
@@ -39,8 +44,8 @@ $lightGreen:     #b4e152;
     }
 
     .title_and_replies_and_tags {
-      width: 536px;
       float: left;
+      width: 536px;
 
       .title {
         h4 {
@@ -54,7 +59,7 @@ $lightGreen:     #b4e152;
 
           a {
             color:   $majorLinkColor;
-            display: inline-block;
+            display: block;
           }
 
           a:hover {
@@ -69,32 +74,33 @@ $lightGreen:     #b4e152;
         line-height: 26px;
 
         i {
-          font-size: 13px;
           color:     #999;
-        }
-
-        .author {
-          display: inline-block;
+          font-size: 13px;
         }
 
         .replies {
-          display: inline-block;
-          width:   120px;
+          float:        right;
+          margin-right: 12px;
         }
 
         .tags {
-          float:        right;
-          margin-right: 12px;
+          a {
+            background:    $mediumGrey;
+            border-radius: 1px;
+            color:         #fff;
+            padding:       0 8px;
+          }
 
-          i {
-            margin-right: 2px;
+          a:hover {
+            background:      $minorLinkColor;
+            text-decoration: none;
           }
         }
       }
     }
 
     .score {
-      background:  $lightGreen;
+      background:  $mediumGrey;
       color:       #fff;
       float:       left;
       font-size:   18px;
