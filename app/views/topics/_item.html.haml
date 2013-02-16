@@ -1,5 +1,5 @@
 %li.topic{ class: topic.unread? && 'unread'  }
-  = avatar(topic.author, 50)
+  = topic.author.avatar(50)
 
   .title_and_replies_and_tags
     .title
@@ -9,12 +9,10 @@
 
     .replies_and_author_and_tags
       .replies
-        %i.icon-comment-alt
-        %span.count= topic.replies_count
-        réponses
+        = topic.replies_count
 
       .tags
-        != topic.tags.map { |tag| link_to(tag.name, nil) }.join(' ')
+        = topic.tag_names
 
   .score
-    .count= topic.score
+    = topic.score

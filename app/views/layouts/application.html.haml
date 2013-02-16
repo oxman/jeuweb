@@ -24,7 +24,7 @@
         %section#side_bar
           %section#user_box
             - if current_user
-              = avatar(current_user, 50)
+              = current_user.avatar(50)
 
               .name
                 %strong

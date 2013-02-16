@@ -11,6 +11,7 @@ gem 'kaminari'
 gem 'cancan'
 gem 'pygments.rb'
 gem 'bb-ruby'
+gem 'draper'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

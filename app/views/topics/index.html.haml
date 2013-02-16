@@ -1,5 +1,5 @@
 %ul#topics
   - @topics.each do |topic|
-    = render 'topics/item', topic: topic
+    = render 'topics/item', topic: topic.decorate
 
 %div= paginate(@topics)

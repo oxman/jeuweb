@@ -56,6 +56,10 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     daemons (1.1.9)
+    draper (1.1.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0.3)
     erubis (2.7.0)
     eventmachine (1.0.0)
     execjs (1.4.0)
@@ -124,6 +128,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    request_store (1.0.5)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.5)
@@ -175,6 +180,7 @@ DEPENDENCIES
   cancan
   capybara
   coffee-rails (~> 3.2.1)
+  draper
   factory_girl_rails
   haml-rails
   jquery-rails
