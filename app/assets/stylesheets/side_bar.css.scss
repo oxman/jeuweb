@@ -26,9 +26,16 @@ $minorLinkColor: #4ba6dd;
       padding: 0 0 0 10px;
       width:   157px;
 
-      strong a {
-        color:     $majorLinkColor;
-        font-size: 18px;
+      strong {
+        a {
+          color:     $majorLinkColor;
+          font-size: 18px;
+        }
+
+        a:hover {
+          color:           $minorLinkColor;
+          text-decoration: none;
+        }
       }
 
       a {
