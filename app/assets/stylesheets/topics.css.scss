@@ -1,7 +1,7 @@
-$majorLinkColor: #374a58;
-$minorLinkColor: #4ba6dd;
-$lightGreen:     #b4e152;
-$mediumGrey:     #abb3bd;
+$anthracite:    #374a58;
+$lightningBlue: #4ba6dd;
+$lightGreen:    #b4e152;
+$mediumGrey:    #abb3bd;
 
 
 #topics {
@@ -17,7 +17,7 @@ $mediumGrey:     #abb3bd;
 
   .topic {
     a {
-      color:           $minorLinkColor;
+      color:           $lightningBlue;
       text-decoration: none;
     }
 
@@ -58,12 +58,12 @@ $mediumGrey:     #abb3bd;
           }
 
           a {
-            color:   $majorLinkColor;
+            color:   $anthracite;
             display: block;
           }
 
           a:hover {
-            color:           $minorLinkColor;
+            color:           $lightningBlue;
             text-decoration: none;
           }
         }
@@ -92,7 +92,7 @@ $mediumGrey:     #abb3bd;
           }
 
           a:hover {
-            background:      $minorLinkColor;
+            background:      $lightningBlue;
             text-decoration: none;
           }
         }

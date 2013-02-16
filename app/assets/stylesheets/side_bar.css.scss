@@ -1,6 +1,6 @@
-$majorLinkColor: #374a58;
-$minorLinkColor: #4ba6dd;
-$mediumGrey:     #abb3bd;
+$anthracite:    #374a58;
+$lightningBlue: #4ba6dd;
+$mediumGrey:    #abb3bd;
 
 
 #side_bar {
@@ -38,18 +38,18 @@ $mediumGrey:     #abb3bd;
 
       strong {
         a, span {
-          color:     $majorLinkColor;
+          color:     $anthracite;
           font-size: 18px;
         }
 
         a:hover {
-          color:           $minorLinkColor;
+          color:           $lightningBlue;
           text-decoration: none;
         }
       }
 
       a {
-        color:           $minorLinkColor;
+        color:           $lightningBlue;
         text-decoration: none;
       }
 
@@ -82,7 +82,7 @@ $mediumGrey:     #abb3bd;
       }
 
       a:hover {
-        background: $minorLinkColor;
+        background: $lightningBlue;
       }
     }
   }
