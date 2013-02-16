@@ -75,4 +75,15 @@ class ReadMarkTest < ActiveSupport::TestCase
     assert_equal [], user.unread_topics
     assert_equal 1, ReadMark.count, 'No additional mark should be created'
   end
+
+
+  def test_topic_becomes_unread_for_user_when_reply_is_posted_after_he_read_it
+    user  = FactoryGirl.create(:user)
+    topic = FactoryGirl.create(:topic)
+    user.read_topic(topic)
+
+    assert Topic.with_read_marks_for(user).first.read?
+    topic.update_attributes(last_reply: FactoryGirl.create(:reply, topic: topic))
+    assert Topic.with_read_marks_for(user).first.unread?
+  end
 end
