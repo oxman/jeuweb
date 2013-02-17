@@ -14,6 +14,10 @@ body #content .tags {
     }
   }
 
+  a.active {
+    background: $anthracite;
+  }
+
   a:hover {
     background:      $lightningBlue;
     text-decoration: none;
