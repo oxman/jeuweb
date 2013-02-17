@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
       mark.reply = reply if mark.reply.nil? || mark.reply_id < reply.id
       mark.save!
     else
-      read_marks.where(topic_id: topic.id, reply_id: 0).first_or_create!
+      read_marks.where(topic_id: topic.id).first_or_create!(reply_id: 0)
     end
   end
 
