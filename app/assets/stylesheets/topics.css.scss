@@ -1,7 +1,4 @@
-$anthracite:    #374a58;
-$lightningBlue: #4ba6dd;
-$lightGreen:    #b4e152;
-$mediumGrey:    #abb3bd;
+@import 'colors';
 
 
 #topics {
@@ -11,7 +8,7 @@ $mediumGrey:    #abb3bd;
     }
 
     .score {
-      background: $lightGreen;
+      background: $mediumGreen;
     }
   }
 
@@ -85,7 +82,7 @@ $mediumGrey:    #abb3bd;
 
         .tags {
           a {
-            background:    $mediumGrey;
+            background:    $mediumGreen;
             border-radius: 1px;
             color:         #fff;
             padding:       0 8px;

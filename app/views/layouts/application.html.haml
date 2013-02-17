@@ -51,15 +51,14 @@
 
           %nav
             %ul
-              - if can?(:create, Topic)
-                %li= link_to 'Créer une discussion', new_topic_path
 
               %li= link_to 'Tous les sujets', root_path
 
               - if current_user
-                %li= link_to 'Messages privées', private_topics_path
-                %li= link_to 'Mes recherches', nil
-                %li= link_to 'Mes favoris', nil
+                %li= link_to 'Messages privés', private_topics_path
+
+              - if can?(:create, Topic)
+                %li= link_to 'Créer une discussion', new_topic_path
 
             .separator
 
@@ -68,8 +67,6 @@
               %li= link_to "Demandes d'aide", topics_search_path(tags: 'Question')
               %li= link_to 'Débats', topics_search_path(tags: 'Débat')
               %li= link_to 'Projets', topics_search_path(tags: 'Projet')
-
-            .separator
 
 
         %section#content

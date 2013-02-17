@@ -1,8 +1,9 @@
 - content_for(:page_title, @topic.title)
+- @topic = @topic.decorate
 
 %section#topic
   %header.topic
-    = avatar(@topic.author, 80)
+    = @topic.author.avatar(80)
 
     .meta_data_and_title
       %h2= @topic.title
@@ -14,8 +15,7 @@
             = time_ago_in_words(@topic.created_at)
 
         %ul.tags
-          - @topic.tags.each do |tag|
-            = render tag, display_topics_count: false
+          = @topic.tags
 
     .score
       - voted = @topic.score_value == Score::POSITIVE
@@ -43,10 +43,10 @@
 
 
   .replies
-    - @replies.each do |reply|
+    - @replies.decorate.each do |reply|
       .reply
         .avatar_and_score
-          = avatar(reply.author, 60)
+          = reply.author.avatar(60)
 
           .score
             - voted = reply.score_value == Score::POSITIVE
