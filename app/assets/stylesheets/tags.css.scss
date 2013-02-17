@@ -1,0 +1,21 @@
+@import 'colors';
+
+
+body #content .tags {
+  a {
+    background:    $mediumGreen;
+    border-radius: 1px;
+    color:         #fff;
+    padding:       0 8px;
+
+    i {
+      color:       #fff;
+      margin-left: -3px;
+    }
+  }
+
+  a:hover {
+    background:      $lightningBlue;
+    text-decoration: none;
+  }
+}

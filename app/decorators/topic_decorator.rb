@@ -15,8 +15,8 @@ class TopicDecorator < Draper::Decorator
 
 
   def tags
-    source.tags.map do |tag|
-      h.link_to(tag.name, nil)
-    end.join(' ').html_safe
+    source.tags.decorate
+      .map { |tag| tag.label }
+      .join(' ').html_safe
   end
 end

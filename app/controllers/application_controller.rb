@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
+  helper_method :current_user, :searched_tags
 
 
   private
@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
   def current_user
     return nil unless cookies.signed[:persistence_token]
     @current_user ||= User.find_by_persistence_token(cookies.signed[:persistence_token]).decorate
+  end
+
+
+  def searched_tags
+    @searched_tags
   end
 
 
