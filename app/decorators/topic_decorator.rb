@@ -5,12 +5,7 @@ class TopicDecorator < Draper::Decorator
 
 
   def replies_count
-    label = case source.replies_count
-    when 0 then 'Aucune réponse'
-    when 1 then 'Une réponse'
-    else h.pluralize(source.replies_count, 'réponse')
-    end
-    ('<i class="icon-comments"></i> ' + label).html_safe
+    ("<i class='icon-comments'></i> #{source.replies_count}").html_safe
   end
 
 

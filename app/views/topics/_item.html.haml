@@ -3,16 +3,13 @@
 
   .title_and_replies_and_tags
     .title
-      %h4
-        = link_to(topic.title, topic)
-
+      %h4= link_to(topic.title, topic)
+      par
+      .author= topic.author.name
 
     .replies_and_author_and_tags
-      .replies
-        = topic.replies_count
-
-      .tags
-        = topic.tags
+      .tags= topic.tags
+      .replies= topic.replies_count
 
   .score
     = topic.score

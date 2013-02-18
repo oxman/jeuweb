@@ -45,20 +45,31 @@
       width: 536px;
 
       .title {
+        color:         #bbb;
+        overflow:      hidden;
+        text-overflow: ellipsis;
+        white-space:   nowrap;
+        width:         510px;
+
         h4 {
+          display:     inline;
           font-size:   22px;
           height:      35px;
           line-height: 35px;
 
           a {
-            color:   $anthracite;
-            display: block;
+            color: $anthracite;
           }
 
           a:hover {
             color:           $lightningBlue;
             text-decoration: none;
           }
+
+        }
+        .author {
+          color:   #999;
+          display: inline;
         }
       }
 
@@ -67,16 +78,17 @@
         line-height: 22px;
 
         i {
-          font-size: 13px;
+          font-size: 14px;
         }
 
         .replies {
+          color:        #aaa;
           float:        right;
           margin-right: 12px;
+        }
 
-          i {
-            color: #999;
-          }
+        .tags {
+          float: left;
         }
       }
     }
