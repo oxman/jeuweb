@@ -1,0 +1,72 @@
+$containerWidth: 642px;
+$labelWidth:     140px;
+$searchBarWidth: $containerWidth - $labelWidth;
+$buttonsWidth:   53px;
+$inputWidth:     $searchBarWidth - $buttonsWidth - 14px;
+
+#search {
+  overflow: hidden;
+  position: relative;
+  padding-top: 10px;
+
+  label {
+    display:     block;
+    float:       left;
+    font-weight: bold;
+    height:      30px;
+    line-height: 30px;
+    width:       $labelWidth;
+    text-indent: 15px;
+  }
+
+  i.icon-search {
+    position: absolute;
+    top: 0;
+    font-size: 50px;
+    color: #ddd;
+    z-index: -1;
+  }
+
+  #search_bar {
+    float:         right;
+    height:        40px;
+    margin-bottom: 20px;
+    width:         $searchBarWidth;
+
+    .input {
+      background:    #fff;
+      border-radius: 3px;
+      border:        1px solid #ddd;
+      display:       inline-block;
+
+      input {
+        border:  none;
+        float:   left;
+        height:  29px;
+        margin:  0 0 0 3px;
+        outline: none;
+        padding: 0 3px;
+        width:   $inputWidth;
+      }
+
+      .buttons {
+        float:  right;
+        margin: 3px 3px 0 0;
+        width: $buttonsWidth;
+      }
+
+      .icon_button {
+        display: inline-block;
+      }
+
+      .add_tag {
+        margin-right: -2px;
+      }
+    }
+  }
+}
+
+
+#available_tags {
+  clear: both;
+}

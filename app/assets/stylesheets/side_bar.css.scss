@@ -14,6 +14,10 @@
     overflow: hidden;
     width:    232px;
 
+    .sign_out {
+      margin-top: 10px;
+    }
+
     .avatar {
       float: left;
     }
@@ -59,28 +63,6 @@
         display:     block;
         height:      25px;
         line-height: 25px;
-      }
-    }
-
-    .sign_out {
-      height: 50px;
-
-      a {
-        background:      $mediumGrey;
-        border-radius:   2px;
-        color:           #fff;
-        display:         block;
-        float:           right;
-        height:          25px;
-        line-height:     25px;
-        margin:          10px 0 0 0;
-        text-align:      center;
-        text-decoration: none;
-        width:           25px;
-      }
-
-      a:hover {
-        background: $lightningBlue;
       }
     }
   }

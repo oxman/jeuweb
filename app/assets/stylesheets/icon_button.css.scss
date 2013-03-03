@@ -1,0 +1,31 @@
+@import 'colors';
+
+.icon_button {
+  a {
+    background:      $mediumGrey;
+    border-radius:   2px;
+    color:           #fff;
+    display:         block;
+    float:           right;
+    height:          25px;
+    line-height:     25px;
+    text-align:      center;
+    text-decoration: none;
+    width:           25px;
+  }
+
+  a:hover {
+    background: $lightningBlue;
+  }
+}
+
+.icon_button.main {
+
+  a {
+    background: $mediumGreen;
+  }
+
+  a:hover {
+    background:  $lightningBlue;
+  }
+}
