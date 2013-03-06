@@ -2,73 +2,49 @@
 - @topic = @topic.decorate
 
 %section#topic
-  %header.topic
-    = @topic.author.avatar(80)
-
-    .meta_data_and_title
+  %section.block
+    .title
       %h2= @topic.title
-      %div.meta_data
-        .author_and_date
-          %strong.author= @topic.author.name
-          %date{ datetime: @topic.created_at.to_time.iso8601, title: l(@topic.created_at) }
-            il y a
-            = time_ago_in_words(@topic.created_at)
+    %ul.tags= @topic.tags
+    .score= @topic.score
 
-        %ul.tags
-          = @topic.tags
+  .messages
+    %section.block.message
+      %aside.left
+        = @topic.author.avatar(60)
+        %span.score= @topic.score
 
-    .score
-      - voted = @topic.score_value == Score::POSITIVE
-      = link_to_if can?(:score, @topic), raw('&#x25B2'), score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
-      .count= @topic.score
-      - voted = @topic.score_value == Score::NEGATIVE
-      = link_to_if can?(:score, @topic), raw('&#x25BC'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+      %aside.top
+        %span.author= @topic.author.name
 
-  .initial_message
-    = prettify_message(@topic.content)
+        %date{ datetime: @topic.created_at.to_time.iso8601, title: l(@topic.created_at) }
+          il y a
+          = time_ago_in_words(@topic.created_at)
 
-  .controls
-    .actions
-      - if can?(:update, @topic)
-        = link_to('Éditer', edit_topic_path(@topic), class: 'edit_topic')
+        - if can?(:update, @topic)
+          = link_to(raw('<i class="icon-edit"></i>'), edit_topic_path(@topic), class: 'edit_reply')
 
-      - if can?(:reply, @topic)
-        = link_to('Répondre', new_topic_reply_path(@topic), class: 'create_reply')
+      .body
+        = prettify_message(@topic.content)
 
-    - if can?(:tag, @topic)
-      .change_tags
-        = form_tag tag_topic_path(@topic) do
-          = text_field_tag :tag_names, @topic.tag_names.join(' ')
-          = submit_tag 'Attribuer les tags'
-
-
-  .replies
     - @replies.decorate.each do |reply|
-      .reply
-        .avatar_and_score
+      %section.block.message
+        %aside.left
           = reply.author.avatar(60)
+          %span.score= reply.score
 
-          .score
-            - voted = reply.score_value == Score::POSITIVE
-            = link_to_if can?(:score, reply), raw('&#x25B2'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
-            .count= reply.score
-            - voted = reply.score_value == Score::NEGATIVE
-            = link_to_if can?(:score, reply), raw('&#x25BC'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
+        %aside.top
+          %span.author= reply.author.name
 
-        .header_and_message
-          %header
-            .author_and_date
-              %strong.author= reply.author.name
-              %date{ datetime: reply.created_at.to_time.iso8601, title: l(reply.created_at) }
-                il y a
-                = time_ago_in_words(reply.created_at)
+          %date{ datetime: reply.created_at.to_time.iso8601, title: l(reply.created_at) }
+            il y a
+            = time_ago_in_words(reply.created_at)
 
-            .actions
-              - if can?(:update, reply)
-                = link_to('Éditer', edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+          - if can?(:update, reply)
+            = link_to(raw('<i class="icon-edit"></i>'), edit_topic_reply_path(@topic, reply), class: 'edit_reply')
 
-          .message
-            = prettify_message(reply.content)
+        .body
+          = prettify_message(reply.content)
 
 
   .topic-actions

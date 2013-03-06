@@ -7,58 +7,54 @@
       = content_for?(:page_title) ? yield(:page_title) : 'Crée ton jeu par navigateur'
 
     = stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Abel'
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:300,400'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
-    #main_header
-      %header
-        %h1
-          = link_to root_path do
-            %span JeuWeb
+    %header
+      %h1
+        = link_to root_path do
+          %span Jeuweb
 
-
-    #wide_container
-      #container
-        %section#side_bar
-          %section#user_box
+    .container
+      .row
+        %aside.span3
+          %section.user_box
             - if current_user
               = current_user.avatar(50)
 
-              %nav
-                %strong= link_to(current_user.name, nil)
+              %ul
+                %li
+                  %span.user= link_to(current_user.name, nil)
 
-                %a{ href: '' } Editer mon profil
+                %li
+                  %a{ href: '' } Editer mon profil
 
-              .sign_out.icon_button
-                = link_to(sign_out_path, method: :delete) do
-                  %i.icon-off
+                %li
+                  = link_to(sign_out_path, class: 'sign_out icon_button', method: :delete) do
+                    %i.icon-off
 
             - else
-              .guest_avatar.avatar
+              .avatar.guest
                 %i.icon-user
 
-
-              %nav
-                %strong
-                  %span Invité
-
-                %div= link_to('Connexion', sign_in_path)
-                %div= link_to('Créer un compte', sign_up_path)
+              %ul
+                %li= link_to('Connexion', sign_in_path)
+                %li= link_to('Créer un compte', sign_up_path)
 
           .separator
 
           %nav
             %ul
 
-              %li= link_to 'Tous les sujets', root_path
+              %li= link_to('Tous les sujets', root_path, class: current_page?(root_path) && 'selected')
 
               - if current_user
-                %li= link_to 'Messages privés', private_topics_path
+                %li= link_to('Messages privés', private_topics_path, class: current_page?(private_topics_path) && 'selected')
 
               - if can?(:create, Topic)
-                %li= link_to 'Créer une discussion', new_topic_path
+                %li= link_to('Créer une discussion', new_topic_path, class: current_page?(new_topic_path) && 'selected')
 
             .separator
 
@@ -69,7 +65,5 @@
               %li= link_to 'Projets', topics_search_path(tags: 'Projet')
 
 
-        %section#content
+        %section.content.span9
           = yield
-
-      #grey_box

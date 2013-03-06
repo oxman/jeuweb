@@ -3,8 +3,6 @@ class UserDecorator < Draper::Decorator
 
 
   def avatar(size)
-    h.content_tag :div, class: 'avatar', title: name do
-      h.image_tag(avatar_url, size: "#{size}x#{size}")
-    end
+    h.image_tag(avatar_url, alt: name, class: 'avatar', size: "#{size}x#{size}")
   end
 end

@@ -1,0 +1,43 @@
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    width: 100%;
+
+    .side_bar {
+      width: 22%;
+    }
+
+    .content {
+      width: 72%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image: none;
+    background: #f0f1f5;
+  }
+
+  header {
+    height: 45px;
+    background-size: auto 45px;
+
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .container {
+    padding-top: 45px;
+
+    section.message {
+      aside.left {
+        display: none;
+      }
+
+      .body {
+        padding-left: 0;
+      }
+    }
+  }
+}

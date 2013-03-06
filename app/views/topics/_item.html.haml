@@ -1,15 +1,12 @@
 %li.topic{ class: topic.unread? && 'unread'  }
-  = topic.author.avatar(50)
+  %section.block{ data: { url: topic_path(topic) } }
+    = topic.author.avatar(50)
 
-  .title_and_replies_and_tags
     .title
-      %h4= link_to(topic.title, topic)
+      %h2= link_to(topic.title, topic)
       par
-      .author= topic.author.name
+      %span.author= topic.author.name
 
-    .replies_and_author_and_tags
-      .tags= topic.tags
-      .replies= topic.replies_count
-
-  .score
-    = topic.score
+    %ul.tags= topic.tags
+    .replies= topic.replies_count
+    .score= topic.score

@@ -10,8 +10,8 @@ class TopicDecorator < Draper::Decorator
 
 
   def tags
-    source.tags.decorate
-      .map { |tag| tag.label }
-      .join(' ').html_safe
+    source.tags.decorate.map do |tag|
+      h.content_tag(:li, tag.label)
+    end.join.html_safe
   end
 end

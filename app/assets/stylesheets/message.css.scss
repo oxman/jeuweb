@@ -1,0 +1,48 @@
+@import 'colors';
+
+section.message {
+  position: relative;
+  color: #888;
+  clear: both;
+  overflow: hidden;
+  height: auto;
+  border-right: 1px solid #e5e5e5;
+  padding-right: 12px;
+
+  .author {
+    float: left;
+    color: $lightningBlue;
+  }
+
+  aside.top {
+    width: auto;
+    padding-top: 0;
+    padding-bottom: 6px;
+    text-align: right;
+
+    .edit_reply {
+      margin-left: 10px;
+    }
+
+    date {
+      font-size: 14px;
+    }
+  }
+
+  aside.left {
+    float: left;
+    padding-top: 0;
+    margin-right: 6px;
+
+    .score {
+      position: static;
+      display: none;
+    }
+  }
+
+  .body {
+    width: auto;
+    text-align: justify;
+    padding-left: 72px;
+  }
+}

@@ -1,0 +1,164 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require bootstrap_and_overrides
+ *= require_self
+ *= require_tree .
+*/
+
+@import 'colors';
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+html, body,  {
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 16px;
+  background-image: url('/assets/background.gif');
+  background-size: 100% auto;
+}
+
+a, a:hover {
+  color: $lightningBlue;
+  text-decoration: none;
+}
+
+.icon_button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  background: $mediumGrey;
+  border-radius: 2px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90px;
+  width: 100%;
+  background-image: url('/assets/header.jpg');
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.container {
+  height: 100%;
+  padding-top: 90px;
+
+  .row {
+    height: 100%;
+
+    aside {
+      padding-top: 20px;
+
+      .user_box {
+        margin-bottom: 30px;
+        margin-left: 25px;
+        margin-right: 25px;
+
+        .avatar {
+          float: left;
+        }
+
+        .avatar.guest {
+          width: 50px;
+          height: 50px;
+          color: $mediumGrey;
+          font-size: 50px;
+          text-align: center;
+        }
+
+        .user {
+          display: block;
+          font-weight: 400;
+          a {
+            font-size: 18px;
+            color: $anthracite;
+          }
+        }
+
+        ul {
+          position: relative;
+          height: 50px;
+          margin-left: 60px;
+          list-style-type: none;
+
+          li {
+            line-height: 24px;
+
+            .sign_out {
+              position: absolute;
+              top: 10px;
+              right: 0;
+            }
+          }
+        }
+      }
+
+      .separator {
+        border: 2px solid #e6eaed;
+        margin: 15px;
+      }
+
+      nav {
+        ul {
+          margin: 0;
+          list-style-type: none;
+
+          li {
+            margin-top: 2px;
+            margin-bottom: 2px;
+
+            a {
+              display: block;
+              height: 28px;
+              line-height: 28px;
+              color: #888;
+              text-decoration: none;
+              text-indent: 50px;
+            }
+
+            a.selected {
+              background: $mediumBlue;
+              border-left: 3px solid $darkBlue;
+              color: #fff;
+            }
+
+            a:hover {
+              background: $lightGreen;
+              border-left: 3px solid $mediumGreen;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      min-height: 100%;
+      padding: 20px;
+      background: white;
+      border-left: 2px solid #e6eaed;
+
+      #topics {
+        list-style-type: none;
+        margin: 0;
+      }
+    }
+  }
+}
