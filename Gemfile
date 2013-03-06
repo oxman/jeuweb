@@ -12,6 +12,7 @@ gem 'cancan'
 gem 'pygments.rb'
 gem 'bb-ruby'
 gem 'draper'
+gem 'twitter-bootstrap-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
