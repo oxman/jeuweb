@@ -1,14 +1,53 @@
+@import 'colors';
+
 @media (min-width: 768px) and (max-width: 1200px) {
   .container {
     width: 100%;
 
-    .side_bar {
-      width: 22%;
-    }
+    .row {
+      .side_bar {
+        width: 20%;
+        margin: 0;
 
-    .content {
-      width: 72%;
+        ul li a {
+          display: block;
+          height: 25px;
+          overflow:hidden;
+          white-space:nowrap;
+          text-overflow:ellipsis;
+        }
+
+        .user_box {
+          margin-right: 6px;
+          margin-bottom: 20px;
+        }
+
+        .separator {
+          margin-right: 6px;
+          margin-left: 26px;
+        }
+
+        nav {
+          margin-left: 26px;
+          margin-right: 6px;
+
+          ul li a {
+            text-indent: 6px;
+          }
+        }
+      }
+
+      .content {
+        width: 80%;
+        margin: 0;
+      }
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  .container .row aside nav ul li a {
+    text-indent: 10px;
   }
 }
 
