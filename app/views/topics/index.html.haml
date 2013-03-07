@@ -2,4 +2,5 @@
   - @topics.each do |topic|
     = render 'topics/item', topic: topic.decorate
 
-%div= paginate(@topics)
+- if @topics.total_pages > 1
+  %div= paginate(@topics)
