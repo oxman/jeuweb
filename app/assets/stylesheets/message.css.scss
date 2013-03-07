@@ -17,11 +17,13 @@ section.message {
   aside.top {
     width: auto;
     padding-top: 0;
-    padding-bottom: 6px;
     text-align: right;
 
     .edit_reply {
+      display: inline-block;
+      height: 19px;
       margin-left: 10px;
+      vertical-align: bottom;
     }
 
     date {
@@ -44,5 +46,7 @@ section.message {
     width: auto;
     text-align: justify;
     padding-left: 62px;
+    margin-top: 6px;
+    margin-bottom: -8px;
   }
 }
