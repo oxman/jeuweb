@@ -20,7 +20,7 @@
           il y a
           = time_ago_in_words(@topic.created_at)
 
-        .score{ :class => @topic.score > 0 ? "score_positive" : "" }
+        .score{ class: @topic.score > 0 ? "score_positive" : "" }
           %span.count= @topic.score
           - if can?(:score, @topic)
             - voted = @topic.score_value == Score::POSITIVE
@@ -47,7 +47,7 @@
             il y a
             = time_ago_in_words(reply.created_at)
 
-          .score{ :class => reply.score > 0 ? "score_positive" : "" }
+          .score{ class: reply.score > 0 ? "score_positive" : "" }
             %span.count= reply.score
             - if can?(:score, reply)
               - voted = reply.score_value == Score::POSITIVE
