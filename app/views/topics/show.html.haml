@@ -12,7 +12,6 @@
     %section.block.message
       %aside.left
         = @topic.author.avatar(60)
-        %span.score= @topic.score
 
       %aside.top
         %span.author= @topic.author.name
@@ -21,17 +20,25 @@
           il y a
           = time_ago_in_words(@topic.created_at)
 
-        - if can?(:update, @topic)
-          = link_to(raw('<i class="icon-edit"></i>'), edit_topic_path(@topic), class: 'edit_reply')
+        .score{ :class => @topic.score > 0 ? "score_positive" : "" }
+          %span.count= @topic.score
+          - if can?(:score, @topic)
+            - voted = @topic.score_value == Score::POSITIVE
+            = link_to raw('<i class="icon-chevron-up"></i>'), score_topic_path(@topic, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+            - voted = @topic.score_value == Score::NEGATIVE
+            = link_to raw('<i class="icon-chevron-down"></i>'), score_topic_path(@topic, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
       .body
         = prettify_message(@topic.content)
+
+      %aside.bottom
+        - if can?(:update, @topic)
+          = link_to(raw('<i class="icon-edit"></i> Éditer'), edit_topic_path(@topic), class: 'edit_reply')
 
     - @replies.decorate.each do |reply|
       %section.block.message
         %aside.left
           = reply.author.avatar(60)
-          %span.score= reply.score
 
         %aside.top
           %span.author= reply.author.name
@@ -40,12 +47,20 @@
             il y a
             = time_ago_in_words(reply.created_at)
 
-          - if can?(:update, reply)
-            = link_to(raw('<i class="icon-edit"></i>'), edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+          .score{ :class => reply.score > 0 ? "score_positive" : "" }
+            %span.count= reply.score
+            - if can?(:score, reply)
+              - voted = reply.score_value == Score::POSITIVE
+              = link_to raw('<i class="icon-chevron-up"></i>'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'positive'), method: :post, class: [ 'score_positive', voted && 'selected' ]
+              - voted = reply.score_value == Score::NEGATIVE
+              = link_to raw('<i class="icon-chevron-down"></i>'), score_topic_reply_path(@topic, reply, vote: voted ? 'neutral' : 'negative'), method: :post, class: [ 'score_negative', voted && 'selected' ]
 
         .body
           = prettify_message(reply.content)
 
+        %aside.bottom
+          - if can?(:update, @topic)
+            = link_to(raw('<i class="icon-edit"></i> Éditer'), edit_topic_reply_path(@topic, reply), class: 'edit_reply')
 
   .topic-actions
     - if can?(:reply, @topic)
@@ -58,5 +73,4 @@
         %div
           = f.submit "Répondre"
 
-
-  = paginate(@replies)
+  %div= paginate(@replies)
