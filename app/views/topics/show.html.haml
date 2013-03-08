@@ -59,7 +59,7 @@
           = prettify_message(reply.content)
 
         %aside.bottom
-          - if can?(:update, @topic)
+          - if can?(:update, reply)
             = link_to(raw('<i class="icon-edit"></i> Éditer'), edit_topic_reply_path(@topic, reply), class: 'edit_reply')
 
   .topic-actions
