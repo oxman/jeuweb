@@ -12,6 +12,7 @@ section.block {
   border-top: 1px solid #f4f4f4;
   border-left: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
   padding: 6px;
 
   .avatar {
@@ -82,7 +83,10 @@ section.block {
     top: -1px;
     right: 0;
     width: 40px;
-    line-height: 62px;
+    margin-right: 6px;
+    margin-top: 6px;
+    line-height: 49px;
+    border-radius: 2px;
     background: $mediumGrey;
     color: #fff;
     font-size: 18px;

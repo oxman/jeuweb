@@ -6,7 +6,6 @@ section.message {
   clear: both;
   overflow: hidden;
   height: auto;
-  border-right: 1px solid #e5e5e5;
 
   .author {
     float: left;
@@ -28,6 +27,7 @@ section.message {
       display: inline-block;
       width: 40px;
       top: 0;
+      margin: 0;
       margin-left: 6px;
       border-radius: 2px;
       line-height: 20px;
@@ -97,6 +97,11 @@ section.message {
       margin-top: 10px;
       vertical-align: bottom;
       font-size: 12px;
+
+      i {
+        margin-left: 10px;
+        line-height: 9px;
+      }
     }
   }
 }
