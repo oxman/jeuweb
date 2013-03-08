@@ -1,8 +1,6 @@
 %ul#topics
   - @topics.each do |topic|
-    = render 'topics/item', topic: topic
+    = render 'topics/item', topic: topic.decorate
 
-%div= paginate(@topics)
-
-- if can?(:create, Topic)
-  %div= link_to 'Créer une discussion', new_topic_path, class: 'create_topic'
+- if @topics.total_pages > 1
+  %div= paginate(@topics)

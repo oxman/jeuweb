@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
   def prettify_message(content)
     regexp = /(\[code=([^\]]+)\](.+?)\[\/code\])/im
@@ -21,12 +22,5 @@ module ApplicationHelper
     end
 
     result.html_safe
-  end
-
-
-  def avatar(user, size)
-    content_tag :div, class: 'avatar' do
-      image_tag(user.avatar_url, size: "#{size}x#{size}")
-    end
   end
 end

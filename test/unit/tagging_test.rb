@@ -10,7 +10,7 @@ class TaggingTest < ActiveSupport::TestCase
 
 
   def test_topic_old_tags_are_removed_when_tagged_again
-    topic = Topic.create
+    topic = FactoryGirl.create(:topic)
     topic.tag_with(%w( foo bar ))
     topic.reload
     topic.tag_with(%w( bar ))

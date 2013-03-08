@@ -1,0 +1,114 @@
+@import 'colors';
+
+section.message {
+  position: relative;
+  color: #888;
+  clear: both;
+  overflow: hidden;
+  height: auto;
+
+  .author {
+    float: left;
+    color: $lightningBlue;
+  }
+
+  aside.top {
+    width: auto;
+    padding-top: 0;
+    text-align: right;
+    line-height: 18px;
+
+    date {
+      font-size: 14px;
+    }
+
+    .score {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      top: 0;
+      margin: 0;
+      margin-left: 6px;
+      border-radius: 2px;
+      line-height: 20px;
+      font-size: 14px;
+
+      .count {
+        display: block;
+        cursor: pointer;
+      }
+
+      a {
+        position: absolute;
+        display: none;
+        width: inherit;
+        background: inherit;
+        color: inherit;
+      }
+
+      a.score_negative {
+        top: 40px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      a.selected {
+        color: $mediumBlue;
+      }
+    }
+
+    .score.score_positive {
+      background: $lightGreen;
+    }
+
+    .score:hover {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      a {
+        display: block;
+      }
+    }
+  }
+
+  aside.left {
+    float: left;
+    width: 60px;
+    padding-top: 0;
+
+  }
+
+  .body {
+    width: auto;
+    padding-left: 62px;
+    margin-top: 6px;
+    margin-right: 6px;
+    margin-bottom: -8px;
+  }
+
+  aside.bottom {
+    visibility: hidden;
+    line-height: 12px;
+    padding-top: 6px;
+    text-align: right;
+
+    .edit_reply {
+      height: 19px;
+      margin-top: 10px;
+      vertical-align: bottom;
+      font-size: 12px;
+
+      i {
+        margin-left: 10px;
+        line-height: 9px;
+      }
+    }
+  }
+}
+
+section.message:hover {
+  aside.bottom {
+    visibility: visible;
+  }
+}
+

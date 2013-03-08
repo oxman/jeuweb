@@ -1,10 +1,20 @@
-%ul#available_tags
-  - @tags.each do |tag|
-    = render tag, display_topics_count: true
+#search
+  %i.icon-search
+  %label{ for: 'selected_tags' } Votre recherche
+  #search_bar
+    .input
+      %input{ id: 'selected_tags', type: 'text', placeholder: 'Ruby, Photoshop…' }
+      .buttons
+        .add_tag.icon_button.main
+          %a{ href: '' }
+            %i.icon-plus
 
+        .list_tags.icon_button
+          %a{ href: '' }
+            %i.icon-chevron-down
 
 %ul#topics.search
   - @topics.each do |topic|
-    = render 'topics/item', topic: topic
+    = render 'topics/item', topic: topic.decorate
 
 %div= paginate(@topics)

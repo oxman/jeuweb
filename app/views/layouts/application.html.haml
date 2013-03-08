@@ -2,44 +2,69 @@
 %html
   %head
     %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     %title
       Jeuweb -
       = content_for?(:page_title) ? yield(:page_title) : 'Crée ton jeu par navigateur'
 
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:300,400'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
-    %header.main
-      %h1= link_to 'JeuWeb', root_path
+    %header
+      %h1
+        = link_to root_path do
+          %span Jeuweb
 
-      %section#current_user
-        - if current_user
-          %div
-            %strong= current_user.name
+    .container
+      .row
+        %aside.side_bar.span3
+          %section.user_box
+            - if current_user
+              = current_user.avatar(50)
 
-          %div= link_to('Déconnexion', sign_out_path, method: :delete)
+              %ul
+                %li
+                  %span.user= link_to(current_user.name, nil)
 
-        - else
-          %div
-            %strong Invité
+                %li
+                  %a{ href: '' } Editer mon profil
 
-          %div= link_to('Connexion', sign_in_path)
-          %div= link_to('Créer un compte', sign_up_path)
+                %li
+                  = link_to(sign_out_path, class: 'sign_out icon_button', method: :delete) do
+                    %i.icon-off
 
-    #container
-      %nav#main
-        %ul
-          %li= link_to 'Discussions', root_path
-          %li= link_to 'Messagerie', private_topics_path
+            - else
+              .avatar.guest
+                %i.icon-user
 
-        %ul
-          %li= link_to 'JeuWeb', topics_search_path(tags: 'JeuWeb')
-          %li= link_to "Demandes d'aide", topics_search_path(tags: 'Question')
-          %li= link_to 'Débats', topics_search_path(tags: 'Débat')
-          %li= link_to 'Projets', topics_search_path(tags: 'Projet')
+              %ul
+                %li= link_to('Connexion', sign_in_path)
+                %li= link_to('Créer un compte', sign_up_path)
+
+          .separator
+
+          %nav
+            %ul
+
+              %li= link_to('Tous les sujets', root_path, class: current_page?(root_path) && 'selected')
+
+              - if current_user
+                %li= link_to('Messages privés', private_topics_path, class: current_page?(private_topics_path) && 'selected')
+
+              - if can?(:create, Topic)
+                %li= link_to('Créer une discussion', new_topic_path, class: current_page?(new_topic_path) && 'selected')
+
+            .separator
+
+            %ul
+              %li= link_to 'JeuWeb', topics_search_path(tags: 'JeuWeb')
+              %li= link_to "Demandes d'aide", topics_search_path(tags: 'Question')
+              %li= link_to 'Débats', topics_search_path(tags: 'Débat')
+              %li= link_to 'Projets', topics_search_path(tags: 'Projet')
 
 
-      %section#content
-        = yield
+        %section.content.span9
+          = yield
