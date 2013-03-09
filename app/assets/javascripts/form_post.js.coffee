@@ -1,6 +1,6 @@
 jQuery ->
   $('.topic-actions textarea').keyup (event)->
-    unless @value is ''
+    if @value != '' and $('#topic').height() > $(window).height() - $('header').height()
       $('.messages').addClass('placeholder')
       $('.topic-actions-container').addClass('fixed')
 
