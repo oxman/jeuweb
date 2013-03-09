@@ -6,7 +6,7 @@ section.block[data-url] {
 
 section.block {
   position: relative;
-  height: 62px;
+  height: 64px;
   background: #fbfbfb;
   margin-bottom: 10px;
   border-top: 1px solid #f4f4f4;
@@ -58,7 +58,7 @@ section.block {
     li {
       display: inline-block;
       margin-right: 5px;
-      line-height: 24px;
+      line-height: 28px;
 
       a {
         display: inline-block;
@@ -84,8 +84,8 @@ section.block {
     right: 0;
     width: 40px;
     margin-right: 6px;
-    margin-top: 6px;
-    line-height: 49px;
+    margin-top: 7px;
+    line-height: 50px;
     border-radius: 2px;
     background: $mediumGrey;
     color: #fff;
