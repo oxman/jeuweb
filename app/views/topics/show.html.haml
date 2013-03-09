@@ -34,6 +34,8 @@
       %aside.bottom
         - if can?(:update, @topic)
           = link_to(raw('<i class="icon-edit"></i> Éditer'), edit_topic_path(@topic), class: 'edit_reply')
+        - if can?(:reply, @topic)
+          = link_to(raw('<i class="icon-file-alt"></i> Répondre'), "#new_reply", class: 'new_reply')
 
     - @replies.decorate.each do |reply|
       %section.block.message
