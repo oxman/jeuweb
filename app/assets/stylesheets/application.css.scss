@@ -158,6 +158,16 @@ header {
       #topics {
         list-style-type: none;
         margin: 0;
+
+        .topic.unread {
+          section.block {
+            background: #f3f3f3;
+          }
+
+          .replies i {
+            color: $lightGreen;
+          }
+        }
       }
     }
   }
