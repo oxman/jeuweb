@@ -70,7 +70,7 @@
           = form_for [ @topic, Reply.new ] do |f|
             = f.label :content, "Réponse"
             = f.text_area :content
-            %button{ class: 'btn', name: 'cancel' } Annuler
-            %button{ class: 'btn', name: 'commit' } Répondre
+            %button{ class: 'btn', name: 'cancel', tabindex: '1' } Annuler
+            %button{ class: 'btn', name: 'commit', tabindex: '0' } Répondre
 
   %div= paginate(@replies)
