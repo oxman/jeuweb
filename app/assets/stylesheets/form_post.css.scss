@@ -1,0 +1,119 @@
+.messages.placeholder {
+  margin-bottom: 290px;
+}
+
+.topic-actions-container {
+  width: 100%;
+  height: 280px;
+  bottom: 0;
+
+  .topic-actions {
+    height: inherit;
+    padding: 6px;
+    background: #fbfbfb;
+    border-top: 1px solid #f4f4f4;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    text-align: right;
+
+    box-shadow: 0 0 0 rgba(0,0,0,0.2);
+
+    -webkit-transition-property: box-shadow;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-timing-fonction: ease-in;
+
+    -moz-transition-property: box-shadow;
+    -moz-transition-duration: 1s;
+    -moz-transition-timing-fonction: ease-in;
+
+    -o-transition-property: box-shadow;
+    -o-transition-duration: 1s;
+    -o-transition-timing-fonction: ease-in;
+
+    transition-property: box-shadow;
+    transition-duration: 1s;
+    transition-timing-fonction: ease-in;
+
+
+    label {
+      text-align: left;
+      cursor: default;
+      font-size: 16px;
+      color: #666;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      border-radius: 0;
+      border-left: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
+      border-right: 1px solid #e5e5e5;
+    }
+
+    button {
+      border-radius: 2px;
+    }
+  }
+}
+
+.topic-actions-container.fixed {
+  position: fixed;
+  width: 828px;
+  margin-bottom: 20px;
+
+  .topic-actions {
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+    -webkit-transition-property: box-shadow;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-timing-fonction: ease-in;
+
+    -moz-transition-property: box-shadow;
+    -moz-transition-duration: 1s;
+    -moz-transition-timing-fonction: ease-in;
+
+    -o-transition-property: box-shadow;
+    -o-transition-duration: 1s;
+    -o-transition-timing-fonction: ease-in;
+
+    transition-property: box-shadow;
+    transition-duration: 1s;
+    transition-timing-fonction: ease-in;
+  }
+}
+
+@media (max-width: 1200px) {
+  .topic-actions-container.fixed {
+    width: 80%;
+    padding-right: 26px;
+  }
+}
+
+@media (max-width: 767px) {
+  .messages.placeholder {
+    margin-bottom: 145px;
+  }
+
+  .topic-actions-container {
+    height: 135px;
+
+    .topic-actions {
+      textarea {
+        height: 60px;
+      }
+
+      button {
+        padding: 2px 10px;
+        font-size: 11.9px;
+      }
+    }
+  }
+
+  .topic-actions-container.fixed {
+    width: 100%;
+    padding-right: 12px;
+    margin-bottom: 6px;
+  }
+}

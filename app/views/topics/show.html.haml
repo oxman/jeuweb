@@ -61,16 +61,16 @@
         %aside.bottom
           - if can?(:update, reply)
             = link_to(raw('<i class="icon-edit"></i> Éditer'), edit_topic_reply_path(@topic, reply), class: 'edit_reply')
+          - if can?(:reply, @topic)
+            = link_to(raw('<i class="icon-file-alt"></i> Répondre'), "#new_reply", class: 'new_reply')
 
-  .topic-actions
     - if can?(:reply, @topic)
-      = form_for [ @topic, Reply.new ] do |f|
-        %div.content
-          = f.label :content
-          %br
-          = f.text_area :content
-
-        %div
-          = f.submit "Répondre"
+      .topic-actions-container{ name: 'new_reply' }
+        .topic-actions
+          = form_for [ @topic, Reply.new ] do |f|
+            = f.label :content, "Réponse"
+            = f.text_area :content
+            %button{ class: 'btn', name: 'cancel' } Annuler
+            %button{ class: 'btn', name: 'commit' } Répondre
 
   %div= paginate(@replies)
